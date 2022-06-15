@@ -146,8 +146,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           child: const SizedBox(
             width: 300,
-            height: 100,
-            child: Center(child: Text(' /')),
+            height: 300,
+            child: Center(
+              child: Text.rich( TextSpan(
+                children: <TextSpan>[
+                  TextSpan(text: 'ORGANIZER', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+                  TextSpan(text: "\nDion D'souza", style: TextStyle(fontSize: 18)),
+                ],
+              ),),
+            ),
           ),
         ),
       ),
@@ -157,10 +164,10 @@ class _MyHomePageState extends State<MyHomePage> {
   //////////////////////////////////////////////////////////////////////////////   Navigation Icons
 
   List<IconData> listOfIcons = [
-    Icons.home_rounded,
-    Icons.qr_code_scanner_rounded,
-    Icons.info,
-    Icons.article_rounded,
+    Icons.account_box,
+    Icons.phone,
+    Icons.dashboard_rounded,
+    Icons.badge,
   ];
 
   //////////////////////////////////////////////////////////////////////////////   Authentication Dialogue
