@@ -1,16 +1,20 @@
+import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
+import 'package:org_aero22/qr_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-String signature = 'Rogue/Outsider';
+import 'challenger_info.dart';
+import 'event_list.dart';
+import 'globals.dart' as global;
 
 void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Organizer',
+      title: "Organizer@AEROPHILIA22",
       initialRoute: '/home',
       routes: {
         '/home': (context) => const MyHomePage(),
+        '/home/QRScanner': (context) => const ScanQrPage(),
       },
     ),
   );
@@ -24,9 +28,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var currentIndex = 0;
+  int _selectedIndex = 0;
   final TextEditingController _textInputController = TextEditingController();
   bool authenticated = false;
+
+  List<Widget> pageList = [
+    const ChallengerInfoPage(),
+    const ScanQrPage(),
+    const EventListPage(),
+    const ScanQrPage(),
+  ];
 
   @override
   void initState() {
@@ -42,9 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
 
       //////////////////////////////////////////////////////////////////////////   App Bar
 
@@ -52,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
         //leading: const Icon(Icons.account_circle_rounded),
         //leadingWidth: 80,
         backgroundColor: Colors.black,
-        elevation: 15,
+        elevation: 0,
         //shadowColor: Colors.grey.shade800,
         toolbarHeight: 66,
         centerTitle: true,
@@ -69,106 +79,49 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
 
-      //////////////////////////////////////////////////////////////////////////  Navigation Bar
+      //////////////////////////////////////////////////////////////////////////  Bottom Navigation Bar
 
-      bottomNavigationBar: Container(
-        margin: const EdgeInsets.all(20),
-        height: size.width * .150,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(.15),
-              blurRadius: 30,
-              offset: const Offset(0, 10),
-            ),
-          ],
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ListView.builder(
-          itemCount: 4,
-          scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.symmetric(horizontal: size.width * .024),
-          itemBuilder: (context, index) => InkWell(
-            onTap: () {
-              setState(
-                () {
-                  currentIndex = index;
-                },
-              );
-            },
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 1500),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  margin: EdgeInsets.only(
-                    bottom: index == currentIndex ? 0 : size.width * .029,
-                    right: size.width * .0422,
-                    left: size.width * .0422,
-                  ),
-                  width: size.width * .128,
-                  height: index == currentIndex ? size.width * .014 : 0,
-                  decoration: const BoxDecoration(
-                    color: Colors.orangeAccent,
-                    borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(10),
-                    ),
-                  ),
-                ),
-                Icon(
-                  listOfIcons[index],
-                  size: size.width * .076,
-                  color: index == currentIndex
-                      ? Colors.orangeAccent
-                      : Colors.black,
-                ),
-                SizedBox(height: size.width * .03),
-              ],
-            ),
+      bottomNavigationBar: FlashyTabBar(
+        backgroundColor: Colors.black,
+        animationCurve: Curves.linear,
+        selectedIndex: _selectedIndex,
+        showElevation: true,
+        onItemSelected: (index) => setState(() {
+          _selectedIndex = index;
+        }),
+        items: [
+          FlashyTabBarItem(
+            icon: const Icon(Icons.account_box),
+            title: const Text('Challenger'),
+            activeColor: Colors.white,
+            inactiveColor: Colors.white,
           ),
-        ),
+          FlashyTabBarItem(
+            icon: const Icon(Icons.phone),
+            title: const Text('Contact'),
+            activeColor: Colors.white,
+            inactiveColor: Colors.white,
+          ),
+          FlashyTabBarItem(
+            icon: const Icon(Icons.dashboard_rounded),
+            title: const Text('Events'),
+            activeColor: Colors.white,
+            inactiveColor: Colors.white,
+          ),
+          FlashyTabBarItem(
+            icon: const Icon(Icons.badge),
+            title: const Text('Quick Scan'),
+            activeColor: Colors.white,
+            inactiveColor: Colors.white,
+          ),
+        ],
       ),
 
       //////////////////////////////////////////////////////////////////////////    Body
 
-      body: Center(
-        child: Card(
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: Theme.of(context).colorScheme.outline,
-            ),
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
-          ),
-          child: const SizedBox(
-            width: 300,
-            height: 300,
-            child: Center(
-              child: Text.rich( TextSpan(
-                children: <TextSpan>[
-                  TextSpan(text: 'ORGANIZER', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
-                  TextSpan(text: "\nDion D'souza", style: TextStyle(fontSize: 18)),
-                ],
-              ),),
-            ),
-          ),
-        ),
-      ),
+      body: pageList.elementAt(_selectedIndex),
     );
   }
-
-  //////////////////////////////////////////////////////////////////////////////   Navigation Icons
-
-  List<IconData> listOfIcons = [
-    Icons.account_box,
-    Icons.phone,
-    Icons.dashboard_rounded,
-    Icons.badge,
-  ];
 
   //////////////////////////////////////////////////////////////////////////////   Authentication Dialogue
 
@@ -225,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
                         child: TextField(
-                          onChanged: (value) => signature = value,
+                          onChanged: (value) => global.signature = value,
                           textAlign: TextAlign.center,
                           decoration: const InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -283,11 +236,13 @@ class _MyHomePageState extends State<MyHomePage> {
     final prefs = await SharedPreferences.getInstance();
     // It doesn't make much sense imho, better use a boolean
     await prefs.setString('passKEY', 'nehal');
+    await prefs.setString('signature', global.signature);
   }
 
   Future<void> _getVarSharedPref() async {
     final prefs = await SharedPreferences.getInstance();
     final storedPasskey = prefs.getString('passKEY') ?? 'Not_yet_authorised';
+    global.signature = prefs.getString('signature')!;
     setState(() {
       authenticated = storedPasskey == 'nehal';
     });
@@ -301,7 +256,7 @@ class _MyHomePageState extends State<MyHomePage> {
       });
       _setPassKEYSharedPref();
     } else {
-      signature = 'Rogue/Outsider';
+      global.signature = 'Rogue || Outsider';
     }
   }
 
