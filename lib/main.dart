@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       //////////////////////////////////////////////////////////////////////////   App Bar
 
-      appBar: AppBar(
+/*      appBar: AppBar(
         //leading: const Icon(Icons.account_circle_rounded),
         //leadingWidth: 80,
         backgroundColor: Colors.black,
@@ -77,9 +77,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: _getAuthIcon(),
               )),
         ],
-      ),
+      ),*/
 
       //////////////////////////////////////////////////////////////////////////  Bottom Navigation Bar
+
+      floatingActionButton: InkWell(
+        splashColor: Colors.white,
+        onLongPress: () {
+          _authDialog(context);
+        },
+        child: FloatingActionButton(
+          backgroundColor: Colors.black,
+          child: _getAuthIcon(),
+          onPressed: (){
+            _authDialog(context);
+          },
+        ),
+      ),
 
       bottomNavigationBar: FlashyTabBar(
         backgroundColor: Colors.black,
