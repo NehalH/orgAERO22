@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:org_aero22/Events/day_one.dart';
 import 'package:org_aero22/contacts/event_heads.dart';
 import 'package:org_aero22/contacts/primary_heads.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
-class ContactPage extends StatefulWidget {
-  const ContactPage({Key? key}) : super(key: key);
+class EventListPage extends StatefulWidget {
+  const EventListPage({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _contactPageState();
+  State<StatefulWidget> createState() => _EventListPageState();
 }
 
 // ignore: camel_case_types
-class _contactPageState extends State<ContactPage> {
+class _EventListPageState extends State<EventListPage> {
   int _selected = 0;
   void changeSelected(int index) {
     setState(() {
@@ -22,7 +23,7 @@ class _contactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
         initialIndex: 0,
-        length: 2,
+        length: 3,
         child: Scaffold(
           body: NestedScrollView(
             headerSliverBuilder: (BuildContext context,
@@ -32,7 +33,7 @@ class _contactPageState extends State<ContactPage> {
                   toolbarHeight: 60,
                   backgroundColor: Colors.black,
                   centerTitle: true,
-                  title: const Text('CONTACT',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,fontFamily: 'Urbanist', color: Colors.white70,)),
+                  title: const Text(' EVENTS',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,fontFamily: 'Urbanist', color: Colors.white70,)),
                   pinned: true,
                   floating: true,
                   bottom: TabBar(
@@ -40,8 +41,9 @@ class _contactPageState extends State<ContactPage> {
                     labelPadding: const EdgeInsets.only(left: 40,right: 40),
                     isScrollable: true,
                     tabs: const [
-                      Tab(text: 'Primary Heads'),
-                      Tab(text: 'Event Heads'),
+                      Tab(text: 'DAY 1'),
+                      Tab(text: 'DAY 2'),
+                      Tab(text: 'DAY 3'),
                     ],
                     labelColor: const Color(0xFFFF9603),
                     indicator: MaterialIndicator(
@@ -57,8 +59,9 @@ class _contactPageState extends State<ContactPage> {
             },
             body:  const TabBarView(
               children: <Widget>[
-                primaryHeadsPage(),
-                eventHeadsPage(),
+                dayOnePage(),
+                dayOnePage(),
+                dayOnePage(),
               ],
             ),
           ),

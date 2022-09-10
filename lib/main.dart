@@ -1,11 +1,11 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
+import 'package:org_aero22/Events/event_list.dart';
 import 'package:org_aero22/qr_scanner.dart';
 import 'package:org_aero22/splash_screen.dart';
 import 'contact.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'challenger_info.dart';
-import 'event_list.dart';
 import 'globals.dart' as global;
 
 void main() {
