@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'globals.dart';
 import 'main.dart';
 import 'globals.dart' as global;
 
@@ -15,41 +16,61 @@ class _challengerInfoPageState extends State<ChallengerInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Container(
-          width: 300,
-          height: 200,
-          padding: const EdgeInsets.all(10.0),
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            color: Colors.black,
-            elevation: 10,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ListTile(
-                  leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
-                  title: Padding(
-                    padding: const EdgeInsets.fromLTRB(2.0,14.0,0,0),
-                    child: Text(
-                        global.signature,
-                        style: const TextStyle(fontSize: 30.0, color: Colors.white)
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10,),
+              Container(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: Image.asset(
+                        'assets/images/Challengers_text_white-01.png',
+                        width: 190,
+                      ),
                     ),
-                  ),
-                  subtitle: const Padding(
-                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
-                    child: Text(
-                        'Aerophilia 2022 | Challengers',
-                        style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    const SizedBox(height: 140,),
+                    const Center(
+                      child: Text('ORGANIZER', style: TextStyle(color:Color(0xFFFF9603), fontFamily: 'Urbanist', fontWeight: FontWeight.w700,fontSize: 26,),),
                     ),
-                  ),
+                    const SizedBox(
+                      height: 60.0,
+                    ),
+                    Center(
+                      child: Image.asset(
+                        'assets/images/Aerophilia-logo-White.png',
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 60.0,
+                    ),
+                    Column(
+                      children: [
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Text(
+                          signature,
+                          style: const TextStyle(fontSize: 24.0,fontWeight: FontWeight.w700,fontFamily: "Urbanist",color: Color(0xFFFF9704)),
+                        ),
+                      ],
+                    ),
+
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        )
+        ),
+      ),
     );
   }
 }

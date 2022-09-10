@@ -1,6 +1,8 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:org_aero22/qr_scanner.dart';
+import 'package:org_aero22/splash_screen.dart';
+import 'contact.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'challenger_info.dart';
 import 'event_list.dart';
@@ -11,8 +13,9 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Organizer@AEROPHILIA22",
-      initialRoute: '/home',
+      initialRoute: '/',
       routes: {
+        '/': (context) => const Splash_screen(),
         '/home': (context) => const MyHomePage(),
         '/home/QRScanner': (context) => const ScanQrPage(),
       },
@@ -34,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> pageList = [
     const ChallengerInfoPage(),
-    const ScanQrPage(),
+    const ContactPage(),
     const EventListPage(),
     const ScanQrPage(),
   ];
@@ -79,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),*/
 
-      //////////////////////////////////////////////////////////////////////////  Bottom Navigation Bar
+      //////////////////////////////////////////////////////////////////////////  Floating Button
 
       floatingActionButton: InkWell(
         splashColor: Colors.white,
@@ -89,14 +92,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: FloatingActionButton(
           backgroundColor: Colors.black,
           child: _getAuthIcon(),
-          onPressed: (){
-            _authDialog(context);
-          },
+          onPressed: (){},
         ),
       ),
 
+      //////////////////////////////////////////////////////////////////////////  Bottom Navigation Bar
+
       bottomNavigationBar: FlashyTabBar(
         backgroundColor: Colors.black,
+        iconSize: 18,
         animationCurve: Curves.linear,
         selectedIndex: _selectedIndex,
         showElevation: true,
@@ -264,13 +268,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void checkPassKey() {
     final String enteredPassKey = _textInputController.text;
-    if (enteredPassKey == 'nehal') {
+    if (enteredPassKey == 'nial') {
       setState(() {
         authenticated = true;
+        super.setState(() {});
       });
       _setPassKEYSharedPref();
     } else {
-      global.signature = 'Rogue || Outsider';
+      setState((){
+        global.signature = 'Rogue || Outsider';
+      });
     }
   }
 
