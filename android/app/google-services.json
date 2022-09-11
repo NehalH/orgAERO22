@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "36680873872",
-    "project_id": "orgaero22",
-    "storage_bucket": "orgaero22.appspot.com"
+    "project_number": "736322578943",
+    "project_id": "orgaerodev",
+    "storage_bucket": "orgaerodev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:36680873872:android:fbf6ba2e2dd5ef3198a515",
+        "mobilesdk_app_id": "1:736322578943:android:872b52e6ce60acca8f5fca",
         "android_client_info": {
           "package_name": "com.example.org_aero22"
         }
       },
       "oauth_client": [
         {
-          "client_id": "36680873872-qb3arnsf8etce5bs8mrgth462n2q714f.apps.googleusercontent.com",
+          "client_id": "736322578943-jlfbj89jg1vbqeen4ttuu8sdql02b1mq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAgOGqtz8rACfohihZtpAlM7Qm4NadV848"
+          "current_key": "AIzaSyBxVFubROkD3jKYacR_2w6slXeKUAnuLxk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "36680873872-qb3arnsf8etce5bs8mrgth462n2q714f.apps.googleusercontent.com",
+              "client_id": "736322578943-jlfbj89jg1vbqeen4ttuu8sdql02b1mq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

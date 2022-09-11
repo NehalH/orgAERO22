@@ -5,3 +5,5 @@ String signature = ' ';
 var orange= const Color(0xFFFF9603);
 var black= Colors.black;
 var eventsBorder= Colors.white70;
+late var scanID;
+int regStatus= 1;
