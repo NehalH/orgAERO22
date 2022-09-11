@@ -118,6 +118,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
               ),
             ),
           )*/
+          Text(global.scanID),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
@@ -194,7 +195,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
-        global.scanID = result!.code;
+        global.scanID = result!.code as String;
       });
     });
   }
@@ -229,6 +230,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
                 ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop();
+                      controller!.resumeCamera();
                     }, child: const Text("Close"))
               ],
             ),
