@@ -6,4 +6,9 @@ var orange= const Color(0xFFFF9603);
 var black= Colors.black;
 var eventsBorder= Colors.white70;
 late String scanID= " ";
-int regStatus= 1;
+var currEvent = "general";
+
+
+late String queryStatus;
+late String name;
+late String contact;

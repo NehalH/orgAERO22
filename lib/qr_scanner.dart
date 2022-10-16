@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as global;
 
 class ScanQrPage extends StatefulWidget {
@@ -14,6 +14,9 @@ class ScanQrPage extends StatefulWidget {
 }
 
 class _ScanQrPageState extends State<ScanQrPage> {
+  final CollectionReference collectionRef =
+      FirebaseFirestore.instance.collection("participants");
+
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -118,58 +121,70 @@ class _ScanQrPageState extends State<ScanQrPage> {
               ),
             ),
           )*/
-          Text(global.scanID),
+          //Text(global.statusFlag),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: SafeArea(
-        child:  FloatingActionButton(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          child: FlutterSwitch(
-            width: 65.0,
-            height: 35.0,
-            toggleSize: 20.0,
-            value: flashStatus,
-            borderRadius: 30.0,
-            padding: 4.0,
-            activeToggleColor: Colors.white,
-            inactiveToggleColor: global.orange,
-            activeSwitchBorder: Border.all(
+        child: Row(
+          children: [
+            FloatingActionButton(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              child: FlutterSwitch(
+                showOnOff: true,
+                width: 65.0,
+                height: 35.0,
+                toggleSize: 20.0,
+                value: flashStatus,
+                borderRadius: 30.0,
+                padding: 4.0,
+                activeToggleColor: Colors.white,
+                inactiveToggleColor: global.orange,
+                activeSwitchBorder: Border.all(
+                  color: Colors.white,
+                  width: 1.0,
+                ),
+                inactiveSwitchBorder: Border.all(
+                  color: global.orange,
+                  width: 1.0,
+                ),
+                activeColor: global.orange,
+                inactiveColor: Colors.white38,
+                activeIcon: Icon(
+                  Icons.lightbulb_rounded,
+                  color: global.orange,
+                ),
+                inactiveIcon: const Icon(Icons.lightbulb_outline_rounded),
+                onToggle: (val) async {
+                  flashStatus = val;
+                  await controller?.toggleFlash();
+                  setState(() {});
+                },
+              ),
+              onPressed: () {},
+            ),
+            MaterialButton(
+              /////////////////////////////////////////////////////  Test button / Pause
+              onPressed: () async {
+                await controller?.pauseCamera();
+                await _onQRViewCreated;
+                regStatus(context);
+              },
               color: Colors.white,
-              width: 1.0,
+              child: const Text("Press"),
             ),
-            inactiveSwitchBorder: Border.all(
-              color: global.orange,
-              width: 1.0,
-            ),
-            activeColor: global.orange,
-            inactiveColor: Colors.white38,
-            activeIcon: Icon(Icons.lightbulb_rounded,color: global.orange,),
-            inactiveIcon: Icon(Icons.lightbulb_outline_rounded),
-            onToggle: (val) async {
-              flashStatus= val;
-              await controller?.toggleFlash();
-              setState(() {});
-            },
-          ),
-          onPressed: (){},
+          ],
         ),
       ),
     );
   }
 
   Widget _buildQrView(BuildContext context) {
-    // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
+    // Check how width or tall the device is and change the scanArea and overlay accordingly.
     controller?.resumeCamera();
-    var scanArea = (MediaQuery
-        .of(context)
-        .size
-        .width < 400 ||
-        MediaQuery
-            .of(context)
-            .size
-            .height < 400)
+    var scanArea = (MediaQuery.of(context).size.width < 400 ||
+            MediaQuery.of(context).size.height < 400)
         ? 150.0
         : 300.0;
 
@@ -193,9 +208,11 @@ class _ScanQrPageState extends State<ScanQrPage> {
       this.controller = controller;
     });
     controller.scannedDataStream.listen((scanData) {
-      setState(() {
+      setState(() async {
+        await controller.pauseCamera();
         result = scanData;
         global.scanID = result!.code as String;
+        regStatus(context); //Do Query
       });
     });
   }
@@ -215,56 +232,177 @@ class _ScanQrPageState extends State<ScanQrPage> {
     super.dispose();
   }
 
-  void regStatus(context) {
-    showDialog(
+  //////////////////////////////////////////////////////////////////////////////  RegStatus Dialogue
+
+  Future regStatus(BuildContext context) {
+    return showDialog(
+      //barrierColor: Colors.transparent,
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-          child: Container(
+          backgroundColor: Colors.transparent,
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.orange,
+                  width: 4,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: 350,
+                    child: doQuery(context),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        controller?.resumeCamera();
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Close")),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ],
+              ),
+            ),
+          ]),
+          /*SizedBox(
             height: 300,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                ListTile();
                 getStatusIcon(),
-                getStatusString(),
+                doQuery(context),
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      controller!.resumeCamera();
-                    }, child: const Text("Close"))
+                    onPressed: (){
+                      controller?.resumeCamera();
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Close"))
               ],
             ),
-          ),
+          ),*/
         );
       },
     );
   }
 
   Icon getStatusIcon() {
-    if (global.regStatus == 1) {
+    /*if (global.statusFlag == 1) {
       return const Icon(Icons.verified_user, color: Colors.green, size: 180);
     }
-    else if (global.regStatus == 0) {
+    else if (global.statusFlag == 0) {
       return const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,);
     }
-    else if (global.regStatus == 2) {
+    else if (global.statusFlag == 2) {
       return const Icon(
         Icons.warning_rounded, color: Colors.yellow, size: 180,);
-    }
-    return const Icon(Icons.refresh, color: Colors.blueGrey, size: 180,);
+    }*/
+    return const Icon(
+      Icons.refresh,
+      color: Colors.blueGrey,
+      size: 180,
+    );
   }
 
-  Text getStatusString() {
-    if (global.regStatus == 1) {
-      return const Text("Verified!", style: TextStyle(fontSize: 20),);
-    }
-    else if (global.regStatus == 0) {
-      return const Text("Not Registered!", style: TextStyle(fontSize: 20),);
-    }
-    else if (global.regStatus == 2) {
-      return const Text("Payment Not done!", style: TextStyle(fontSize: 20),);
-    }
-    return const Text("Error! Retry.", style: TextStyle(fontSize: 20),);
-  }
+  Widget doQuery(BuildContext context) {
+    CollectionReference users =
+        FirebaseFirestore.instance.collection('participants');
 
+    return FutureBuilder<DocumentSnapshot>(
+      future: users.doc(global.scanID).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {
+          global.queryStatus = 'Something went wrong. Try again.';
+          return Column(
+            children: [
+              const SizedBox(height: 20,),
+              const Icon(Icons.warning_rounded, color: Colors.yellow, size: 180,),
+              Text(
+                'Something went wrong. Try again.',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: global.black,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w700,
+                ),
+                textAlign: TextAlign.center,
+              )
+            ],
+          );
+        }
+
+        if (snapshot.hasData && !snapshot.data!.exists) {
+          return Column(
+            children: [
+              const SizedBox(height: 20,),
+              const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
+              Text(
+                'User not found!',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: global.black,
+                  fontFamily: 'Urbanist',
+                  fontWeight: FontWeight.w700,
+                ),
+                textAlign: TextAlign.center,
+              )
+            ],
+          );
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data =
+              snapshot.data!.data() as Map<String, dynamic>;
+          return Column(
+            children: [
+              const SizedBox(height: 20,),
+              const Icon(Icons.verified_user, color: Colors.green, size: 180),
+              ListTile(
+                title: Text(
+                  'User found',
+                  style: TextStyle(
+                    fontSize: 28,
+                    color: global.black,
+                    fontFamily: 'Urbanist',
+                    fontWeight: FontWeight.w700,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.fromLTRB(2.0, 8.0, 0, 0),
+                  child: Text(
+                    'Name: ${data['Name']}\n'
+                        'Contact: ${data['Contact']}',
+                    style: const TextStyle(fontSize: 18.0, color: Colors.black),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              )
+            ],
+          );
+        }
+        return Column(
+          children: const [
+            SizedBox(height: 20,),
+            CircularProgressIndicator(
+              //value: controller?.value,
+              semanticsLabel: 'Circular progress indicator',
+            ),
+            Text("Loading",
+              style: TextStyle(fontSize: 18.0, color: Colors.black),
+              textAlign: TextAlign.center,)
+          ],
+        );
+      },
+    );
+  }
 }

@@ -44,6 +44,8 @@ dependencies:
   tab_indicator_styler: ^2.0.0
   firebase_core: ^1.22.0
   flutter_switch: ^0.3.2
+  cloud_firestore: ^3.5.1
+
 
 dev_dependencies:
   flutter_test:

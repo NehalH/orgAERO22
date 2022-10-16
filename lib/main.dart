@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:org_aero22/Events/event_list.dart';
@@ -6,9 +7,17 @@ import 'package:org_aero22/splash_screen.dart';
 import 'contact.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'challenger_info.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'firebase_options.dart';
 import 'globals.dart' as global;
 
-void main() {
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -276,7 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _setPassKEYSharedPref();
     } else {
       setState((){
-        global.signature = 'Rogue || Outsider';
+        global.signature = 'UNAUTHORISED!';
       });
     }
   }
