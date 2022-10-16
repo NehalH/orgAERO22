@@ -295,11 +295,11 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
   }
 
   Widget doQuery(BuildContext context) {
-    CollectionReference users =
-    FirebaseFirestore.instance.collection('participants');
+    CollectionReference events =
+    FirebaseFirestore.instance.collection('participants').doc(global.scanID).collection('events');
 
     return FutureBuilder<DocumentSnapshot>(
-      future: users.doc(global.scanID).get(),
+      future: events.doc(global.whichEventYa).get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -343,43 +343,51 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
         if (snapshot.connectionState == ConnectionState.done) {
           Map<String, dynamic> data =
           snapshot.data!.data() as Map<String, dynamic>;
-          return Column(
-            children: [
-              const SizedBox(height: 20,),
-              const Icon(Icons.verified_user, color: Colors.green, size: 180),
-              ListTile(
-                title: Text(
-                  'User found',
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: global.black,
-                    fontFamily: 'Urbanist',
-                    fontWeight: FontWeight.w700,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                subtitle: Padding(
-                  padding: const EdgeInsets.fromLTRB(2.0, 8.0, 0, 0),
-                  child: Text(
-                    'Name: ${data['Name']}\n'
-                        'Contact: ${data['Contact']}',
-                    style: const TextStyle(fontSize: 18.0, color: Colors.black),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              )
-            ],
-          );
+          if(!data['paid']){
+            return Column(
+              children: const [
+                SizedBox(height: 20,),
+                Icon(Icons.warning_rounded, color: Colors.yellow, size: 180,),
+                Text('Payment not done!'),
+              ],
+            );
+          }
+          else if(!data['Attended']){
+            events.doc(global.whichEventYa).update({'Attended': true});
+            return Column(
+              children: const [
+                SizedBox(height: 20,),
+                Icon(Icons.verified_user, color: Colors.green, size: 180),
+                Text('Verified and marked as attended.'),
+              ],
+            );
+          }
+          else{
+            return Column(
+              children: const [
+                SizedBox(height: 20,),
+                Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
+                Text('Already attended!'),
+              ],
+            );
+          }
         }
         return Column(
           children: const [
             SizedBox(height: 20,),
-            CircularProgressIndicator(
-              //value: controller?.value,
-              semanticsLabel: 'Circular progress indicator',
+            SizedBox(
+              height: 140, width: 140,
+              child: CircularProgressIndicator(
+                strokeWidth: 20,
+                semanticsLabel: 'Circular progress indicator',
+              ),
             ),
-            Text("Loading",
-              style: TextStyle(fontSize: 18.0, color: Colors.black),
+            Text("\nLoading",
+              style: TextStyle(
+                fontSize: 28,
+                fontFamily: 'Urbanist',
+                fontWeight: FontWeight.w700,
+              ),
               textAlign: TextAlign.center,)
           ],
         );

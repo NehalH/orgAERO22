@@ -292,12 +292,19 @@ class _ScanQrPageState extends State<ScanQrPage> {
         return Column(
           children: const [
             SizedBox(height: 20,),
-            CircularProgressIndicator(
-              //value: controller?.value,
-              semanticsLabel: 'Circular progress indicator',
+            SizedBox(
+              height: 140, width: 140,
+              child: CircularProgressIndicator(
+                strokeWidth: 20,
+                semanticsLabel: 'Circular progress indicator',
+              ),
             ),
-            Text("Loading",
-              style: TextStyle(fontSize: 18.0, color: Colors.black),
+            Text("\nLoading",
+              style: TextStyle(
+                fontSize: 28,
+                fontFamily: 'Urbanist',
+                fontWeight: FontWeight.w700,
+              ),
               textAlign: TextAlign.center,)
           ],
         );

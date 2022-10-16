@@ -56,7 +56,7 @@ class _dayOnePageState extends State<dayOnePage> {
                     child: Icon(Icons.qr_code_scanner_rounded, size: 28, color: global.orange,),
                     onTap: () {
                       global.whichEventYa= "skydive";                            //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-                      Navigator.pushNamed(context, '/home/QRScanner');
+                      Navigator.pushNamed(context, '/home/Events/BouncerQRScanner');
                     },
                   ),
                 ),
