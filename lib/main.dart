@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:org_aero22/Events/event_list.dart';
+import 'package:org_aero22/bouncer_qr_scanner.dart';
+import 'package:org_aero22/contacts/primary_heads.dart';
 import 'package:org_aero22/qr_scanner.dart';
 import 'package:org_aero22/splash_screen.dart';
 import 'contact.dart';
@@ -26,7 +28,11 @@ Future<void> main() async {
       routes: {
         '/': (context) => const Splash_screen(),
         '/home': (context) => const MyHomePage(),
+        '/home/Contact': (context) => const primaryHeadsPage(),
+        '/home/Events': (context) => const EventListPage(),
+        '/home/Events/BouncerQRScanner': (context) => const BouncerScanQrPage(),
         '/home/QRScanner': (context) => const ScanQrPage(),
+
       },
     ),
   );

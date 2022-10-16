@@ -6,16 +6,16 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as global;
 
-class ScanQrPage extends StatefulWidget {
-  const ScanQrPage({Key? key}) : super(key: key);
+class BouncerScanQrPage extends StatefulWidget {
+  const BouncerScanQrPage({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ScanQrPageState();
+  State<StatefulWidget> createState() => _BouncerScanQrPageState();
 }
 
-class _ScanQrPageState extends State<ScanQrPage> {
+class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
   final CollectionReference collectionRef =
-      FirebaseFirestore.instance.collection("participants");
+  FirebaseFirestore.instance.collection("participants");
 
   Barcode? result;
   QRViewController? controller;
@@ -39,6 +39,89 @@ class _ScanQrPageState extends State<ScanQrPage> {
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
+          /*Expanded(
+            flex: 1,
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  if (result != null)
+                    Text(
+                        'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+                  else
+                    const Text('Scan a code'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              await controller?.toggleFlash();
+                              setState(() {});
+                            },
+                            child: FutureBuilder(
+                              future: controller?.getFlashStatus(),
+                              builder: (context, snapshot) {
+                                return Text('Flash: ${snapshot.data}');
+                              },
+                            )),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              await controller?.flipCamera();
+                              setState(() {});
+                            },
+                            child: FutureBuilder(
+                              future: controller?.getCameraInfo(),
+                              builder: (context, snapshot) {
+                                if (snapshot.data != null) {
+                                  return Text(
+                                      'Camera facing ${describeEnum(snapshot.data!)}');
+                                } else {
+                                  return const Text('loading');
+                                }
+                              },
+                            )),
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            await controller?.pauseCamera();
+                            regStatus(context);
+                          },
+                          child: const Text('pause',
+                              style: TextStyle(fontSize: 20)),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            await controller?.resumeCamera();
+                          },
+                          child: const Text('resume',
+                              style: TextStyle(fontSize: 20)),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          )*/
+          //Text(global.statusFlag),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
@@ -101,7 +184,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
     // Check how width or tall the device is and change the scanArea and overlay accordingly.
     controller?.resumeCamera();
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
-            MediaQuery.of(context).size.height < 400)
+        MediaQuery.of(context).size.height < 400)
         ? 150.0
         : 300.0;
 
@@ -211,10 +294,9 @@ class _ScanQrPageState extends State<ScanQrPage> {
     );
   }
 
-
   Widget doQuery(BuildContext context) {
     CollectionReference users =
-        FirebaseFirestore.instance.collection('participants');
+    FirebaseFirestore.instance.collection('participants');
 
     return FutureBuilder<DocumentSnapshot>(
       future: users.doc(global.scanID).get(),
@@ -260,7 +342,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
 
         if (snapshot.connectionState == ConnectionState.done) {
           Map<String, dynamic> data =
-              snapshot.data!.data() as Map<String, dynamic>;
+          snapshot.data!.data() as Map<String, dynamic>;
           return Column(
             children: [
               const SizedBox(height: 20,),
