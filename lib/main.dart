@@ -76,29 +76,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      //////////////////////////////////////////////////////////////////////////   App Bar
-
-/*      appBar: AppBar(
-        //leading: const Icon(Icons.account_circle_rounded),
-        //leadingWidth: 80,
-        backgroundColor: Colors.black,
-        elevation: 0,
-        //shadowColor: Colors.grey.shade800,
-        toolbarHeight: 66,
-        centerTitle: true,
-        title: const Text("AEROPHILIA'22"),
-        actions: <Widget>[
-          Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onLongPress: () {
-                  _authDialog(context);
-                },
-                child: _getAuthIcon(),
-              )),
-        ],
-      ),*/
-
       //////////////////////////////////////////////////////////////////////////  Floating Button
 
       floatingActionButton: InkWell(

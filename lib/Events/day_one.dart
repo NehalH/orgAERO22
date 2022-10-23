@@ -16,7 +16,7 @@ class _dayOnePageState extends State<dayOnePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: global.background,
         body: GridView.count(
           primary: false,
           padding: const EdgeInsets.all(20),
