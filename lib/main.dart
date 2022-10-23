@@ -46,6 +46,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  @override
+  void initState() {
+    super.initState();
+    _getVarSharedPref();
+  }
+
   int _selectedIndex = 0;
   final TextEditingController _textInputController = TextEditingController();
   bool authenticated = false;
@@ -57,11 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
     const ScanQrPage(),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    _getVarSharedPref();
-  }
 
   @override
   void dispose() {
@@ -283,7 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void checkPassKey() {
     final String enteredPassKey = _textInputController.text;
-    if (enteredPassKey == 'nial') {
+    if (enteredPassKey == 'nehal') {
       setState(() {
         authenticated = true;
         super.setState(() {});
