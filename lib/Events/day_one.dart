@@ -16,7 +16,7 @@ class _dayOnePageState extends State<dayOnePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: global.background,
+        backgroundColor: Colors.black,
         body: GridView.count(
           primary: false,
           padding: const EdgeInsets.all(20),
@@ -27,15 +27,23 @@ class _dayOnePageState extends State<dayOnePage> {
           children: <Widget>[
             ///////////////////////////////////////////////////////////////////////
             Card(
-              shape: RoundedRectangleBorder(
+              /*shape: RoundedRectangleBorder(
                 side: BorderSide(
                   color: global.eventsBorder,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8.0),
-              ),
+              ),*/
               child: Container(
-                color: global.black,
+                decoration: BoxDecoration(
+                  color: global.background,
+                  border: Border.all(
+                    color: global.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                //color: global.background,
                 padding: const EdgeInsets.all(16),
                 child: ListTile(
                   leading: Image.asset('assets/images/Aerophilia-logo mark-White.png', height: 45,),
