@@ -6,6 +6,12 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as global;
 
+CollectionReference events =
+FirebaseFirestore.
+instance.collection('participants').
+doc(global.scanID).
+collection('events');
+
 class BouncerScanQrPage extends StatefulWidget {
   const BouncerScanQrPage({Key? key}) : super(key: key);
 
@@ -156,6 +162,328 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
       //barrierColor: Colors.transparent,
       context: context,
       builder: (BuildContext context) {
+        return doQuery(context);
+      },
+    );
+  }
+
+  Future youSure(BuildContext context) {                                         // youSure?
+    return showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return Dialog(
+          child:
+              Card(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: Colors.red,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(4.0),
+                ),
+                child: Column(
+                  children: [
+                    const Text("You are about to make a registration for this event.\n"
+                        "Make sure to collect the full registration amount fron the participant\n"
+                        "The same will be retrieved from you later\n"
+                        "Do you wish to proceed?"
+                    ),
+                    MaterialButton(
+                      onPressed: (){
+                        events.doc(global.whichEventYa).update({'paid':true});
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Proceed'),
+                      color: Colors.green,
+                    ),
+                  ],
+                ),
+              ),
+        );
+      }
+    );
+  }
+
+  Widget doQuery(BuildContext context) {                                        //doQuery
+
+    return FutureBuilder<DocumentSnapshot>(
+      future: events.doc(global.whichEventYa).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {                                                 //Error
+          return Dialog(
+            backgroundColor: Colors.transparent,
+            child:
+            Column(mainAxisSize: MainAxisSize.min, children: [
+              Card(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: global.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(4.0),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 350,
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 20,),
+                          const Icon(Icons.warning_rounded, color: Colors.yellow, size: 180,),
+                          Text(
+                            'Something went wrong. Try again.',
+                            style: TextStyle(
+                              fontSize: 28,
+                              color: global.black,
+                              fontFamily: 'Urbanist',
+                              fontWeight: FontWeight.w700,
+                            ),
+                            textAlign: TextAlign.center,
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          controller?.resumeCamera();
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Close")),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+          );
+        }
+
+        if (snapshot.hasData && !snapshot.data!.exists) {                       //User not found
+          return Dialog(
+            backgroundColor: Colors.transparent,
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Card(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: global.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(4.0),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 350,
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 20,),
+                          const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
+                          Text(
+                            'User not found!',
+                            style: TextStyle(
+                              fontSize: 28,
+                              color: global.black,
+                              fontFamily: 'Urbanist',
+                              fontWeight: FontWeight.w700,
+                            ),
+                            textAlign: TextAlign.center,
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      width: 200,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            controller?.resumeCamera();
+                            Navigator.pop(context);
+                          },
+                          child: const Text("Close")
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+          );
+        }
+
+
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data =
+          snapshot.data!.data() as Map<String, dynamic>;
+          ////////////////////////////////////////////////////////////////////// Payment incomplete
+          if(!data['paid']){
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Card(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: global.orange,
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 350,
+                        child: Column(
+                          children: const [
+                            SizedBox(height: 20,),
+                            Icon(Icons.warning_rounded, color: Colors.yellow, size: 180,),
+                            Text('Payment not done!'),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        width: 200,
+                        child: MaterialButton(
+                          elevation: 5,
+                          color: Colors.green,
+                            onPressed: () {
+                              youSure(context);
+                            },
+                            child: const Text("Offline Payment")
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 200,
+                        child: MaterialButton(
+                            elevation: 5,
+                            color: Colors.blue,
+                            onPressed: () {
+                              controller?.resumeCamera();
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Close")
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+            );
+          }
+          ////////////////////////////////////////////////////////////////////// Attendance Successful
+          else if(!data['Attended']){
+            events.doc(global.whichEventYa).update({'Attended': true});
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Card(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: global.orange,
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 350,
+                        child: Column(
+                          children: const [
+                            SizedBox(height: 20,),
+                            Icon(Icons.verified_user, color: Colors.green, size: 180),
+                            Text('Verified and marked as attended.'),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        width: 80,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              controller?.resumeCamera();
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Close")
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+            );
+          }
+          ////////////////////////////////////////////////////////////////////// Already Attended
+          else{
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Card(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: global.orange,
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 350,
+                        child: Column(
+                          children: const [
+                            SizedBox(height: 20,),
+                            Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
+                            Text('Already attended!'),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        width: 200,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              controller?.resumeCamera();
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Close")
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+            );
+          }
+        }
+        //////////////////////////////////////////////////////////////////////// Loading
         return Dialog(
           backgroundColor: Colors.transparent,
           child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -171,17 +499,39 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                 children: [
                   SizedBox(
                     width: 350,
-                    child: doQuery(context),
+                    child: Column(
+                      children: const [
+                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 140, width: 140,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 20,
+                            semanticsLabel: 'Circular progress indicator',
+                          ),
+                        ),
+                        Text("\nLoading",
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontFamily: 'Urbanist',
+                            fontWeight: FontWeight.w700,
+                          ),
+                          textAlign: TextAlign.center,)
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        controller?.resumeCamera();
-                        Navigator.pop(context);
-                      },
-                      child: const Text("Close")),
+                  Container(
+                    width: 200,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          controller?.resumeCamera();
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Close")
+                    ),
+                  ),
                   const SizedBox(
                     height: 30,
                   ),
@@ -189,107 +539,6 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
               ),
             ),
           ]),
-        );
-      },
-    );
-  }
-
-  Widget doQuery(BuildContext context) {
-    CollectionReference events =
-    FirebaseFirestore.instance.collection('participants').doc(global.scanID).collection('events');
-
-    return FutureBuilder<DocumentSnapshot>(
-      future: events.doc(global.whichEventYa).get(),
-      builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Column(
-            children: [
-              const SizedBox(height: 20,),
-              const Icon(Icons.warning_rounded, color: Colors.yellow, size: 180,),
-              Text(
-                'Something went wrong. Try again.',
-                style: TextStyle(
-                  fontSize: 28,
-                  color: global.black,
-                  fontFamily: 'Urbanist',
-                  fontWeight: FontWeight.w700,
-                ),
-                textAlign: TextAlign.center,
-              )
-            ],
-          );
-        }
-
-        if (snapshot.hasData && !snapshot.data!.exists) {
-          return Column(
-            children: [
-              const SizedBox(height: 20,),
-              const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
-              Text(
-                'User not found!',
-                style: TextStyle(
-                  fontSize: 28,
-                  color: global.black,
-                  fontFamily: 'Urbanist',
-                  fontWeight: FontWeight.w700,
-                ),
-                textAlign: TextAlign.center,
-              )
-            ],
-          );
-        }
-
-        if (snapshot.connectionState == ConnectionState.done) {
-          Map<String, dynamic> data =
-          snapshot.data!.data() as Map<String, dynamic>;
-          if(!data['paid']){
-            return Column(
-              children: const [
-                SizedBox(height: 20,),
-                Icon(Icons.warning_rounded, color: Colors.yellow, size: 180,),
-                Text('Payment not done!'),
-              ],
-            );
-          }
-          else if(!data['Attended']){
-            events.doc(global.whichEventYa).update({'Attended': true});
-            return Column(
-              children: const [
-                SizedBox(height: 20,),
-                Icon(Icons.verified_user, color: Colors.green, size: 180),
-                Text('Verified and marked as attended.'),
-              ],
-            );
-          }
-          else{
-            return Column(
-              children: const [
-                SizedBox(height: 20,),
-                Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
-                Text('Already attended!'),
-              ],
-            );
-          }
-        }
-        return Column(
-          children: const [
-            SizedBox(height: 20,),
-            SizedBox(
-              height: 140, width: 140,
-              child: CircularProgressIndicator(
-                strokeWidth: 20,
-                semanticsLabel: 'Circular progress indicator',
-              ),
-            ),
-            Text("\nLoading",
-              style: TextStyle(
-                fontSize: 28,
-                fontFamily: 'Urbanist',
-                fontWeight: FontWeight.w700,
-              ),
-              textAlign: TextAlign.center,)
-          ],
         );
       },
     );

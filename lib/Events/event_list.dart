@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:org_aero22/Events/day_one.dart';
-import 'package:org_aero22/contacts/event_heads.dart';
-import 'package:org_aero22/contacts/primary_heads.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 class EventListPage extends StatefulWidget {
