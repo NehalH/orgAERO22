@@ -247,7 +247,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _setPassKEYSharedPref() async {
     final prefs = await SharedPreferences.getInstance();
     // It doesn't make much sense imho, better use a boolean
-    await prefs.setString('passKEY', 'nehal');
+    await prefs.setString('passKEY', 'nehal');                                   //Here
     await prefs.setString('signature', global.signature);
   }
 
@@ -257,12 +257,25 @@ class _MyHomePageState extends State<MyHomePage> {
     global.signature = prefs.getString('signature')!;
     setState(() {
       authenticated = storedPasskey == 'nehal';
+      if(authenticated){
+
+        global.events =
+        FirebaseFirestore.
+        instance.collection('participants').
+        doc(global.scanID).
+        collection('events');
+
+        global.userKundali =
+        FirebaseFirestore.
+        instance.collection('participants');
+
+      }
     });
   }
 
   void checkPassKey() {
     final String enteredPassKey = _textInputController.text;
-    if (enteredPassKey == 'nehal') {
+    if (enteredPassKey == 'nehal') {                                             //And Here
       setState(() {
         authenticated = true;
         super.setState(() {});

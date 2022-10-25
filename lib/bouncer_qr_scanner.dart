@@ -6,11 +6,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as global;
 
-CollectionReference events =
-FirebaseFirestore.
-instance.collection('participants').
-doc(global.scanID).
-collection('events');
+CollectionReference events= global.events;
 
 class BouncerScanQrPage extends StatefulWidget {
   const BouncerScanQrPage({Key? key}) : super(key: key);

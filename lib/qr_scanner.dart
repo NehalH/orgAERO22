@@ -6,6 +6,8 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as global;
 
+CollectionReference userKundali = global.userKundali;
+
 class ScanQrPage extends StatefulWidget {
   const ScanQrPage({Key? key}) : super(key: key);
 
@@ -213,11 +215,9 @@ class _ScanQrPageState extends State<ScanQrPage> {
 
 
   Widget doQuery(BuildContext context) {
-    CollectionReference users =
-        FirebaseFirestore.instance.collection('participants');
 
     return FutureBuilder<DocumentSnapshot>(
-      future: users.doc(global.scanID).get(),
+      future: userKundali.doc(global.scanID).get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
