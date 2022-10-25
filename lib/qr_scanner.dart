@@ -51,7 +51,6 @@ class _ScanQrPageState extends State<ScanQrPage> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               child: FlutterSwitch(
-                showOnOff: true,
                 width: 65.0,
                 height: 35.0,
                 toggleSize: 20.0,
@@ -83,19 +82,105 @@ class _ScanQrPageState extends State<ScanQrPage> {
               ),
               onPressed: () {},
             ),
-            MaterialButton(
-              /////////////////////////////////////////////////////  Test button / Pause
+            const SizedBox(
+              width: 25,
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  )
+                ),
+                backgroundColor: MaterialStateProperty.all<Color>(global.orange,),
+              ),
               onPressed: () async {
                 await controller?.pauseCamera();
-                await _onQRViewCreated;
-                regStatus(context);
+                enterManually(context);
               },
-              color: Colors.white,
-              child: const Text("Press"),
+              child: const Text("Enter manually"),
             ),
           ],
         ),
       ),
+    );
+  }
+//////////////////////////////////////////////////////////////////////////////// Enter Manually
+  Future enterManually(BuildContext context){
+    return showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return Dialog(
+            backgroundColor: Colors.transparent,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TextField(
+
+                        onChanged: (value) => global.scanID = value,
+                        textAlign: TextAlign.center,
+                        decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: Colors.grey, width: 2.0),
+                          ),
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          hintText: 'eg: 1234',
+                          hintStyle: TextStyle(
+                            color: Colors.black38,
+                            fontSize: null,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(
+                        width: 200,
+                        child: MaterialButton(
+
+                          onPressed: () {
+                            regStatus(context);
+                          },
+                          color: global.orange,
+                          child: const Text(
+                            "Search",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 200,
+                        child: MaterialButton(
+                          onPressed: () async{
+                            await controller!.resumeCamera();
+                            Navigator.pop(context);
+                          },
+                          color: Colors.blue,//Colors.red.shade600,
+                          child: const Text(
+                            "Close",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                )
+              ),
+
+          );
+        },
     );
   }
 

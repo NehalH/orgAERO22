@@ -51,8 +51,8 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               child: FlutterSwitch(
-                showOnOff: true,
-                width: 65.0,
+                //showOnOff: true,
+                width: 75.0,
                 height: 35.0,
                 toggleSize: 20.0,
                 value: flashStatus,
@@ -87,8 +87,6 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
               /////////////////////////////////////////////////////  Test button / Pause
               onPressed: () async {
                 await controller?.pauseCamera();
-                await _onQRViewCreated;
-                regStatus(context);
               },
               color: Colors.white,
               child: const Text("Press"),
@@ -259,7 +257,8 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
           );
         }
 
-        if (snapshot.hasData && !snapshot.data!.exists) {                       //User not found
+        ////////////////////////////////////////////////////////////////////////User not found
+        if (snapshot.hasData && !snapshot.data!.exists) {
           return Dialog(
             backgroundColor: Colors.transparent,
             child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -280,7 +279,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                           const SizedBox(height: 20,),
                           const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
                           Text(
-                            'User not found!',
+                            'User has not registered!',
                             style: TextStyle(
                               fontSize: 28,
                               color: global.black,
@@ -315,8 +314,6 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
           );
         }
 
-
-
         if (snapshot.connectionState == ConnectionState.done) {
           Map<String, dynamic> data =
           snapshot.data!.data() as Map<String, dynamic>;
@@ -348,7 +345,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                       const SizedBox(
                         height: 30,
                       ),
-                      Container(
+                      SizedBox(
                         width: 200,
                         child: MaterialButton(
                           elevation: 5,
@@ -518,7 +515,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Container(
+                  SizedBox(
                     width: 200,
                     child: ElevatedButton(
                         onPressed: () {
