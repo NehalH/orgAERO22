@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as global;
 
 CollectionReference events= global.events;
+CollectionReference userKundali = global.userKundali;
 
 class BouncerScanQrPage extends StatefulWidget {
   const BouncerScanQrPage({Key? key}) : super(key: key);
@@ -83,17 +84,106 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
               ),
               onPressed: () {},
             ),
-            MaterialButton(
-              /////////////////////////////////////////////////////  Test button / Pause
+            const SizedBox(
+              width: 25,
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                    )
+                ),
+                backgroundColor: MaterialStateProperty.all<Color>(global.orange,),
+              ),
               onPressed: () async {
                 await controller?.pauseCamera();
+                enterManually(context);
               },
-              color: Colors.white,
-              child: const Text("Press"),
+              child: const Text("Enter manually"),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  //////////////////////////////////////////////////////////////////////////////// Enter Manually
+  Future enterManually(BuildContext context){
+    return showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    TextField(
+
+                      onChanged: (value) => global.scanID = value,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                          BorderSide(color: Colors.grey, width: 2.0),
+                        ),
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        hintText: 'eg: 1234',
+                        hintStyle: TextStyle(
+                          color: Colors.black38,
+                          fontSize: null,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(
+                      width: 200,
+                      child: MaterialButton(
+
+                        onPressed: () {
+                          regStatus(context);
+                        },
+                        color: global.orange,
+                        child: const Text(
+                          "Search",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: MaterialButton(
+                        onPressed: () async{
+                          await controller!.resumeCamera();
+                          Navigator.pop(context);
+                        },
+                        color: Colors.blue,//Colors.red.shade600,
+                        child: const Text(
+                          "Close",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+
+                  ],
+                ),
+              )
+          ),
+
+        );
+      },
     );
   }
 
@@ -167,31 +257,64 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
       builder: (BuildContext context){
         return Dialog(
           child:
-              Card(
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    color: Colors.red,
-                    width: 2,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: global.orange,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children:  [
+                        const SizedBox(height: 20,),
+                        Icon(Icons.warning_rounded, color: global.orange, size: 180,),
+                        const Text("You are about to make a registration for this event.\n"
+                            "Make sure to collect the full registration amount fron the participant\n"
+                            "The same will be retrieved from you later\n"
+                            "Do you wish to proceed?"),
+                        const SizedBox(height: 20,),
+                        SizedBox(
+                          width: 200,
+                          child: MaterialButton(
+                            onPressed: (){
+                              userKundali
+                                  .doc(global.scanID)
+                                  .collection('events')
+                                  .doc(global.whichEventYa)
+                                  .update({'paid':true});
+
+                              Navigator.pop(context);
+                            },
+                            color: Colors.green,
+                            child: const Text(
+                              'Proceed',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: MaterialButton(
+                            onPressed: () async{
+                              await controller!.resumeCamera();
+                              Navigator.pop(context);
+                            },
+                            color: Colors.blue,//Colors.red.shade600,
+                            child: const Text(
+                              "Close",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(4.0),
-                ),
-                child: Column(
-                  children: [
-                    const Text("You are about to make a registration for this event.\n"
-                        "Make sure to collect the full registration amount fron the participant\n"
-                        "The same will be retrieved from you later\n"
-                        "Do you wish to proceed?"
-                    ),
-                    MaterialButton(
-                      onPressed: (){
-                        events.doc(global.whichEventYa).update({'paid':true});
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Proceed'),
-                      color: Colors.green,
-                    ),
-                  ],
-                ),
+                ],
               ),
         );
       }
@@ -201,7 +324,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
   Widget doQuery(BuildContext context) {                                        //doQuery
 
     return FutureBuilder<DocumentSnapshot>(
-      future: events.doc(global.whichEventYa).get(),
+      future: userKundali.doc(global.scanID).collection('events').doc(global.whichEventYa).get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {                                                 //Error
@@ -257,7 +380,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
           );
         }
 
-        ////////////////////////////////////////////////////////////////////////User not found
+        //////////////////////////////////////////////////////////////////////// User not registered
         if (snapshot.hasData && !snapshot.data!.exists) {
           return Dialog(
             backgroundColor: Colors.transparent,
@@ -279,12 +402,12 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                           const SizedBox(height: 20,),
                           const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
                           Text(
-                            'User has not registered!',
+                            'User has not\nregistered!',
                             style: TextStyle(
                               fontSize: 28,
                               color: global.black,
                               fontFamily: 'Urbanist',
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w600,
                             ),
                             textAlign: TextAlign.center,
                           )
@@ -350,8 +473,9 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                         child: MaterialButton(
                           elevation: 5,
                           color: Colors.green,
-                            onPressed: () {
-                              youSure(context);
+                            onPressed: () async{
+                              await youSure(context);
+                              Navigator.pop(context);
                             },
                             child: const Text("Offline Payment")
                         ),
@@ -359,7 +483,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Container(
+                      SizedBox(
                         width: 200,
                         child: MaterialButton(
                             elevation: 5,
@@ -382,7 +506,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
           }
           ////////////////////////////////////////////////////////////////////// Attendance Successful
           else if(!data['Attended']){
-            events.doc(global.whichEventYa).update({'Attended': true});
+            userKundali.doc(global.scanID).collection('events').doc(global.whichEventYa).update({'Attended': true});
             return Dialog(
               backgroundColor: Colors.transparent,
               child: Column(mainAxisSize: MainAxisSize.min, children: [

@@ -105,6 +105,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
       ),
     );
   }
+
 //////////////////////////////////////////////////////////////////////////////// Enter Manually
   Future enterManually(BuildContext context){
     return showDialog(
@@ -276,28 +277,10 @@ class _ScanQrPageState extends State<ScanQrPage> {
               ),
             ),
           ]),
-          /*SizedBox(
-            height: 300,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ListTile();
-                getStatusIcon(),
-                doQuery(context),
-                ElevatedButton(
-                    onPressed: (){
-                      controller?.resumeCamera();
-                      Navigator.pop(context);
-                    },
-                    child: const Text("Close"))
-              ],
-            ),
-          ),*/
         );
       },
     );
   }
-
 
   Widget doQuery(BuildContext context) {
 

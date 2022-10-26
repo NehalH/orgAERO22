@@ -259,15 +259,10 @@ class _MyHomePageState extends State<MyHomePage> {
       authenticated = storedPasskey == 'nehal';
       if(authenticated){
 
-        global.events =
-        FirebaseFirestore.
-        instance.collection('participants').
-        doc(global.scanID).
-        collection('events');
-
         global.userKundali =
-        FirebaseFirestore.
-        instance.collection('participants');
+        FirebaseFirestore
+            .instance
+            .collection('participants');
 
       }
     });
