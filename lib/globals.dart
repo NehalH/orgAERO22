@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+late String passkey;
 String signature = ' ';
 var orange= const Color(0xFFFF9603);
 var background= const Color(0xFF29282A);

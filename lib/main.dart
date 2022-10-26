@@ -54,7 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   int _selectedIndex = 0;
-  final TextEditingController _textInputController = TextEditingController();
   bool authenticated = false;
 
   List<Widget> pageList = [
@@ -67,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    _textInputController.dispose();
     super.dispose();
   }
 
@@ -155,7 +153,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                         child: TextField(
-                          controller: _textInputController,
+                          //controller: _textInputController,
+                          onChanged: (value) => global.passkey = value,
                           style: const TextStyle(color: Colors.transparent),
                           textAlign: TextAlign.center,
                           decoration: const InputDecoration(
@@ -269,18 +268,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void checkPassKey() {
-    final String enteredPassKey = _textInputController.text;
+    final String enteredPassKey = global.passkey;
     if (enteredPassKey == 'nehal') {                                             //And Here
       setState(() {
         authenticated = true;
         super.setState(() {});
       });
       _setPassKEYSharedPref();
-    } else {
+    } /*else {
       setState((){
         global.signature = 'UNAUTHORISED!';
       });
-    }
+    }*/
   }
 
   Icon _getAuthIcon() {
