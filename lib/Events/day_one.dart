@@ -25,52 +25,68 @@ class _dayOnePageState extends State<dayOnePage> {
           crossAxisCount: 1,
           childAspectRatio: 12 / 3.5,
           children: <Widget>[
-            ///////////////////////////////////////////////////////////////////////
+
+            /////////////////////////////////////////////////////////////////////// Drone Race
             Card(
-              /*shape: RoundedRectangleBorder(
+              shape: RoundedRectangleBorder(
                 side: BorderSide(
                   color: global.eventsBorder,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8.0),
-              ),*/
+              ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: global.background,
+                  color: global.cardBackground,
                   border: Border.all(
                     color: global.orange,
                     width: 2,
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                //color: global.background,
                 padding: const EdgeInsets.all(16),
                 child: ListTile(
-                  leading: Image.asset('assets/images/Aerophilia-logo mark-White.png', height: 45,),
+                  leading: Image.asset(
+                    'assets/images/Aerophilia-logo mark-White.png',
+                    height: 45,
+                  ),
                   title: Text(
-                    'Skydive',
-                    style: TextStyle(fontSize: 18, color: global.orange,),
+                    'Lift Off!',                                                    //Event name
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: global.orange,
+                    ),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Aeromodelling',
-                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                      'Drone Racing',                                            //Event type
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white38
+                      ),
                     ),
                   ),
                   trailing: InkWell(
                     splashColor: global.orange,
                     highlightColor: Colors.white,
-                    child: Icon(Icons.qr_code_scanner_rounded, size: 28, color: global.orange,),
+                    child: Icon(
+                      Icons.qr_code_scanner_rounded,
+                      size: 28,
+                      color: global.orange,
+                    ),
                     onTap: () {
-                      global.whichEventYa= "skydive";                            //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-                      Navigator.pushNamed(context, '/home/Events/BouncerQRScanner');
+                      global.whichEventYa= "LIFT OFF!";                            //Collection key
+                      Navigator.pushNamed(
+                          context,
+                          '/home/Events/BouncerQRScanner'
+                      );
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Robo Soccer
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
@@ -80,33 +96,57 @@ class _dayOnePageState extends State<dayOnePage> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Container(
-                color: global.black,
+                decoration: BoxDecoration(
+                  color: global.cardBackground,
+                  border: Border.all(
+                    color: global.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 padding: const EdgeInsets.all(16),
                 child: ListTile(
-                  leading: Image.asset('assets/images/Aerophilia-logo mark-White.png', height: 45,),
+                  leading: Image.asset(
+                    'assets/images/Aerophilia-logo mark-White.png',
+                    height: 45,
+                  ),
                   title: Text(
-                    'Need for Speed',
-                    style: TextStyle(fontSize: 18, color: global.orange,),
+                    'Robo Soccer',                                                    //Event name
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: global.orange,
+                    ),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Drone Race',
-                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                      'Robot Football',                                            //Event type
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white38
+                      ),
                     ),
                   ),
                   trailing: InkWell(
                     splashColor: global.orange,
                     highlightColor: Colors.white,
-                    child: Icon(Icons.qr_code_scanner_rounded, size: 28, color: global.orange,),
+                    child: Icon(
+                      Icons.qr_code_scanner_rounded,
+                      size: 28,
+                      color: global.orange,
+                    ),
                     onTap: () {
-                      Navigator.pushNamed(context, '/home/QRScanner');
+                      global.whichEventYa= "ROBO SOCCER";                            //Collection key
+                      Navigator.pushNamed(
+                          context,
+                          '/home/Events/BouncerQRScanner'
+                      );
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Code Studio
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
@@ -116,33 +156,57 @@ class _dayOnePageState extends State<dayOnePage> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Container(
-                color: global.black,
+                decoration: BoxDecoration(
+                  color: global.cardBackground,
+                  border: Border.all(
+                    color: global.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 padding: const EdgeInsets.all(16),
                 child: ListTile(
-                  leading: Image.asset('assets/images/Aerophilia-logo mark-White.png', height: 45,),
+                  leading: Image.asset(
+                    'assets/images/Aerophilia-logo mark-White.png',
+                    height: 45,
+                  ),
                   title: Text(
-                    'Man vs Bug',
-                    style: TextStyle(fontSize: 18, color: global.orange,),
+                    'Man v/s Bug',                                                    //Event name
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: global.orange,
+                    ),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Coding',
-                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                      'Coding',                                            //Event type
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white38
+                      ),
                     ),
                   ),
                   trailing: InkWell(
                     splashColor: global.orange,
                     highlightColor: Colors.white,
-                    child: Icon(Icons.qr_code_scanner_rounded, size: 28, color: global.orange,),
+                    child: Icon(
+                      Icons.qr_code_scanner_rounded,
+                      size: 28,
+                      color: global.orange,
+                    ),
                     onTap: () {
-                      Navigator.pushNamed(context, '/home/QRScanner');
+                      global.whichEventYa= "MAN vs BUG";                            //Collection key
+                      Navigator.pushNamed(
+                          context,
+                          '/home/Events/BouncerQRScanner'
+                      );
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Sherlocked
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
@@ -152,33 +216,57 @@ class _dayOnePageState extends State<dayOnePage> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Container(
-                color: global.black,
+                decoration: BoxDecoration(
+                  color: global.cardBackground,
+                  border: Border.all(
+                    color: global.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 padding: const EdgeInsets.all(16),
                 child: ListTile(
-                  leading: Image.asset('assets/images/Aerophilia-logo mark-White.png', height: 45,),
+                  leading: Image.asset(
+                    'assets/images/Aerophilia-logo mark-White.png',
+                    height: 45,
+                  ),
                   title: Text(
-                    'Russian Roullete',
-                    style: TextStyle(fontSize: 18, color: global.orange,),
+                    'Sherlocked',                                                    //Event name
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: global.orange,
+                    ),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Kids',
-                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                      'Detective Game',                                            //Event type
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white38
+                      ),
                     ),
                   ),
                   trailing: InkWell(
                     splashColor: global.orange,
                     highlightColor: Colors.white,
-                    child: Icon(Icons.qr_code_scanner_rounded, size: 28, color: global.orange,),
+                    child: Icon(
+                      Icons.qr_code_scanner_rounded,
+                      size: 28,
+                      color: global.orange,
+                    ),
                     onTap: () {
-                      Navigator.pushNamed(context, '/home/QRScanner');
+                      global.whichEventYa= "SHERLOCKED";                            //Collection key
+                      Navigator.pushNamed(
+                          context,
+                          '/home/Events/BouncerQRScanner'
+                      );
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Group Dance
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
@@ -188,33 +276,57 @@ class _dayOnePageState extends State<dayOnePage> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Container(
-                color: global.black,
+                decoration: BoxDecoration(
+                  color: global.cardBackground,
+                  border: Border.all(
+                    color: global.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 padding: const EdgeInsets.all(16),
                 child: ListTile(
-                  leading: Image.asset('assets/images/Aerophilia-logo mark-White.png', height: 45,),
+                  leading: Image.asset(
+                    'assets/images/Aerophilia-logo mark-White.png',
+                    height: 45,
+                  ),
                   title: Text(
-                    'Skydive',
-                    style: TextStyle(fontSize: 18, color: global.orange,),
+                    'IN10SITY',                                                    //Event name
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: global.orange,
+                    ),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Aeromodelling',
-                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                      'Group Dance',                                            //Event type
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white38
+                      ),
                     ),
                   ),
                   trailing: InkWell(
                     splashColor: global.orange,
                     highlightColor: Colors.white,
-                    child: Icon(Icons.qr_code_scanner_rounded, size: 28, color: global.orange,),
+                    child: Icon(
+                      Icons.qr_code_scanner_rounded,
+                      size: 28,
+                      color: global.orange,
+                    ),
                     onTap: () {
-                      Navigator.pushNamed(context, '/home/QRScanner');
+                      global.whichEventYa= "IN10SITY";                            //Collection key
+                      Navigator.pushNamed(
+                          context,
+                          '/home/Events/BouncerQRScanner'
+                      );
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Western Music
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
@@ -224,33 +336,180 @@ class _dayOnePageState extends State<dayOnePage> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Container(
-                color: global.black,
+                decoration: BoxDecoration(
+                  color: global.cardBackground,
+                  border: Border.all(
+                    color: global.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 padding: const EdgeInsets.all(16),
                 child: ListTile(
-                  leading: Image.asset('assets/images/Aerophilia-logo mark-White.png', height: 45,),
+                  leading: Image.asset(
+                    'assets/images/Aerophilia-logo mark-White.png',
+                    height: 45,
+                  ),
                   title: Text(
-                    'Skydive',
-                    style: TextStyle(fontSize: 18, color: global.orange,),
+                    'Sing On',                                                    //Event name
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: global.orange,
+                    ),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Aeromodelling',
-                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                      'Western Music',                                            //Event type
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white38
+                      ),
                     ),
                   ),
                   trailing: InkWell(
                     splashColor: global.orange,
                     highlightColor: Colors.white,
-                    child: Icon(Icons.qr_code_scanner_rounded, size: 28, color: global.orange,),
+                    child: Icon(
+                      Icons.qr_code_scanner_rounded,
+                      size: 28,
+                      color: global.orange,
+                    ),
                     onTap: () {
-                      Navigator.pushNamed(context, '/home/QRScanner');
+                      global.whichEventYa= "SING ON";                            //Collection key
+                      Navigator.pushNamed(
+                          context,
+                          '/home/Events/BouncerQRScanner'
+                      );
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Valo
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.eventsBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: global.cardBackground,
+                  border: Border.all(
+                    color: global.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  leading: Image.asset(
+                    'assets/images/Aerophilia-logo mark-White.png',
+                    height: 45,
+                  ),
+                  title: Text(
+                    'Mayhem! - Valo',                                                    //Event name
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: global.orange,
+                    ),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Valorant',                                            //Event type
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white38
+                      ),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: Icon(
+                      Icons.qr_code_scanner_rounded,
+                      size: 28,
+                      color: global.orange,
+                    ),
+                    onTap: () {
+                      global.whichEventYa= "MAYHEM!-Valo";                            //Collection key
+                      Navigator.pushNamed(
+                          context,
+                          '/home/Events/BouncerQRScanner'
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// CODM
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.eventsBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: global.cardBackground,
+                  border: Border.all(
+                    color: global.orange,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  leading: Image.asset(
+                    'assets/images/Aerophilia-logo mark-White.png',
+                    height: 45,
+                  ),
+                  title: Text(
+                    'Mayhem! - CODM',                                                    //Event name
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: global.orange,
+                    ),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Call Of Duty Mobile',                                            //Event type
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white38
+                      ),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: Icon(
+                      Icons.qr_code_scanner_rounded,
+                      size: 28,
+                      color: global.orange,
+                    ),
+                    onTap: () {
+                      global.whichEventYa= "MAYHEM!-CODM";                            //Collection key
+                      Navigator.pushNamed(
+                          context,
+                          '/home/Events/BouncerQRScanner'
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(
+              height: 10,
+            ),                                                 // BlankBox
 
           ],
         ));

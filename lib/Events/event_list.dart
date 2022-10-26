@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:org_aero22/Events/day_one.dart';
+import 'package:org_aero22/Events/day_three.dart';
+import 'package:org_aero22/Events/day_two.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 class EventListPage extends StatefulWidget {
@@ -58,8 +60,8 @@ class _EventListPageState extends State<EventListPage> {
             body:  const TabBarView(
               children: <Widget>[
                 dayOnePage(),
-                dayOnePage(),
-                dayOnePage(),
+                dayTwoPage(),
+                dayThreePage(),
               ],
             ),
           ),

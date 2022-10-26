@@ -5,19 +5,22 @@ import 'package:flutter/material.dart';
 late String passkey;
 String signature = ' ';
 var orange= const Color(0xFFFF9603);
-var background= const Color(0xFF29282A);
+var cardBackground= const Color(0xFF1C1E20); //29282A
+var contactBorder= Colors.white60; //29282A
 var black= Colors.black;
 var eventsBorder= const Color(0xFFFF9603);
-late String scanID= " ";
+late String scanID;
 
 CollectionReference events =
-FirebaseFirestore.
-instance.collection('Unauthorised Access').
-doc("Unauthorised Access").
-collection('Unauthorised Access');
+FirebaseFirestore
+    .instance
+    .collection('Unauthorised Access')
+    .doc("Unauthorised Access")
+    .collection('Unauthorised Access');
 
 CollectionReference userKundali =
-FirebaseFirestore.
-instance.collection('Unauthorised Access');
+FirebaseFirestore
+    .instance
+    .collection('Unauthorised Access');
 
 late String whichEventYa;

@@ -24,11 +24,12 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
           crossAxisCount: 1,
           childAspectRatio: 12 / 3.5,
           children: <Widget>[
-            ///////////////////////////////////////////////////////////////////////
+
+            /////////////////////////////////////////////////////////////////////// SkyDive
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: global.orange,
+                  color: global.contactBorder,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(14.0),
@@ -39,13 +40,13 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                 child: ListTile(
                   //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
                   title: Text(
-                    'Skydive',
+                    'Skydive',                                                    //Event name
                     style: TextStyle(fontSize: 18, color: global.orange,),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Nehal Hosalikar',
+                      'Nehal Hosalikar',                                          //Contact name
                       style: TextStyle(fontSize: 16.0, color: Colors.white38),
                     ),
                   ),
@@ -54,17 +55,17 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                     highlightColor: Colors.white,
                     child: const Icon(Icons.phone, size: 28, color: Colors.white,),
                     onTap: () {
-                      launch("tel://8217785009");
+                      launch("tel://8217785009");                                 //Contact number
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Lift Off!
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: global.orange,
+                  color: global.contactBorder,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(14.0),
@@ -75,13 +76,13 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                 child: ListTile(
                   //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
                   title: Text(
-                    'Need for speed',
+                    'Lift Off!',                                                    //Event name
                     style: TextStyle(fontSize: 18, color: global.orange,),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Nehal Hosalikar',
+                      'Sushan Shetty',                                          //Contact name
                       style: TextStyle(fontSize: 16.0, color: Colors.white38),
                     ),
                   ),
@@ -90,17 +91,17 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                     highlightColor: Colors.white,
                     child: const Icon(Icons.phone, size: 28, color: Colors.white,),
                     onTap: () {
-                      launch("tel://8217785009");
+                      launch("tel://6360298756");                                 //Contact number
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Robo Soccer
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: global.orange,
+                  color: global.contactBorder,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(14.0),
@@ -111,13 +112,13 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                 child: ListTile(
                   //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
                   title: Text(
-                    'Man vs Bug',
+                    'Robo Soccer',                                                    //Event name
                     style: TextStyle(fontSize: 18, color: global.orange,),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Nehal Hosalikar',
+                      'Dion Dsouza',                                          //Contact name
                       style: TextStyle(fontSize: 16.0, color: Colors.white38),
                     ),
                   ),
@@ -126,17 +127,17 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                     highlightColor: Colors.white,
                     child: const Icon(Icons.phone, size: 28, color: Colors.white,),
                     onTap: () {
-                      launch("tel://8217785009");
+                      launch("tel://7975573950");                                 //Contact number
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Tug of Bots
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: global.orange,
+                  color: global.contactBorder,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(14.0),
@@ -147,13 +148,13 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                 child: ListTile(
                   //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
                   title: Text(
-                    'Tug of Bots',
+                    'Tug of Bots',                                                    //Event name
                     style: TextStyle(fontSize: 18, color: global.orange,),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Nehal Hosalikar',
+                      'Rakshith K',                                          //Contact name
                       style: TextStyle(fontSize: 16.0, color: Colors.white38),
                     ),
                   ),
@@ -162,17 +163,17 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                     highlightColor: Colors.white,
                     child: const Icon(Icons.phone, size: 28, color: Colors.white,),
                     onTap: () {
-                      launch("tel://8217785009");
+                      launch("tel://7306231899");                                 //Contact number
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Line Follower
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: global.orange,
+                  color: global.contactBorder,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(14.0),
@@ -183,13 +184,13 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                 child: ListTile(
                   //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
                   title: Text(
-                    'Blind coding',
+                    'Line Follower',                                                    //Event name
                     style: TextStyle(fontSize: 18, color: global.orange,),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Nehal Hosalikar',
+                      'Akshay Shet',                                          //Contact name
                       style: TextStyle(fontSize: 16.0, color: Colors.white38),
                     ),
                   ),
@@ -198,17 +199,17 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                     highlightColor: Colors.white,
                     child: const Icon(Icons.phone, size: 28, color: Colors.white,),
                     onTap: () {
-                      launch("tel://8217785009");
+                      launch("tel://9449384765");                                 //Contact number
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Flight Simulation
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: global.orange,
+                  color: global.contactBorder,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(14.0),
@@ -219,13 +220,13 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                 child: ListTile(
                   //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
                   title: Text(
-                    'Hospitality In-charge',
+                    'Skydive',                                                    //Event name
                     style: TextStyle(fontSize: 18, color: global.orange,),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Nehal Hosalikar',
+                      'Nehal Hosalikar',                                          //Contact name
                       style: TextStyle(fontSize: 16.0, color: Colors.white38),
                     ),
                   ),
@@ -234,17 +235,17 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                     highlightColor: Colors.white,
                     child: const Icon(Icons.phone, size: 28, color: Colors.white,),
                     onTap: () {
-                      launch("tel://8217785009");
+                      launch("tel://8217785009");                                 //Contact number
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Blind Coding
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: global.orange,
+                  color: global.contactBorder,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(14.0),
@@ -255,13 +256,13 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                 child: ListTile(
                   //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
                   title: Text(
-                    'College Coordinator',
+                    'Skydive',                                                    //Event name
                     style: TextStyle(fontSize: 18, color: global.orange,),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Nehal Hosalikar',
+                      'Nehal Hosalikar',                                          //Contact name
                       style: TextStyle(fontSize: 16.0, color: Colors.white38),
                     ),
                   ),
@@ -270,17 +271,17 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                     highlightColor: Colors.white,
                     child: const Icon(Icons.phone, size: 28, color: Colors.white,),
                     onTap: () {
-                      launch("tel://8217785009");
+                      launch("tel://8217785009");                                 //Contact number
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Man v/s Bug
             Card(
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: global.orange,
+                  color: global.contactBorder,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(14.0),
@@ -291,13 +292,13 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                 child: ListTile(
                   //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
                   title: Text(
-                    'Crowd Control In-charge',
+                    'Skydive',                                                    //Event name
                     style: TextStyle(fontSize: 18, color: global.orange,),
                   ),
                   subtitle: const Padding(
                     padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
                     child: Text(
-                      'Nehal Hosalikar',
+                      'Nehal Hosalikar',                                          //Contact name
                       style: TextStyle(fontSize: 16.0, color: Colors.white38),
                     ),
                   ),
@@ -306,13 +307,408 @@ class _eventHeadsPageState extends State<eventHeadsPage> {
                     highlightColor: Colors.white,
                     child: const Icon(Icons.phone, size: 28, color: Colors.white,),
                     onTap: () {
-                      launch("tel://8217785009");
+                      launch("tel://8217785009");                                 //Contact number
                     },
                   ),
                 ),
               ),
             ),
-            ///////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////// Water Rocket
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// Grease Monkey
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// Paper Presentation
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// Sherlocked
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// Mayhem!
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// Pixel Perfect
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// Hogathon
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// Rockin' Riot
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// Feel the Beat
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// in10sity
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////////////////////////////////////////////////////// Sing On
+            Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: global.contactBorder,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(14.0),
+              ),
+              child: Container(
+                color: global.black,
+                padding: const EdgeInsets.all(16),
+                child: ListTile(
+                  //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                  title: Text(
+                    'Skydive',                                                    //Event name
+                    style: TextStyle(fontSize: 18, color: global.orange,),
+                  ),
+                  subtitle: const Padding(
+                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                    child: Text(
+                      'Nehal Hosalikar',                                          //Contact name
+                      style: TextStyle(fontSize: 16.0, color: Colors.white38),
+                    ),
+                  ),
+                  trailing: InkWell(
+                    splashColor: global.orange,
+                    highlightColor: Colors.white,
+                    child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                    onTap: () {
+                      launch("tel://8217785009");                                 //Contact number
+                    },
+                  ),
+                ),
+              ),
+            )
           ],
         ));
   }

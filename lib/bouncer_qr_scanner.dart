@@ -655,7 +655,8 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                 ],
               ),
             ),
-          ]),
+          ],
+          ),
         );
       },
     );
