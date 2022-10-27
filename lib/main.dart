@@ -32,7 +32,6 @@ Future<void> main() async {
         '/home/Events': (context) => const EventListPage(),
         '/home/Events/BouncerQRScanner': (context) => const BouncerScanQrPage(),
         '/home/QRScanner': (context) => const ScanQrPage(),
-
       },
     ),
   );
@@ -49,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    super.initState();
     _getVarSharedPref();
+    super.initState();
   }
 
   int _selectedIndex = 0;

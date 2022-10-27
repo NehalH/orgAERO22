@@ -24,6 +24,16 @@ class _primaryHeadsPageState extends State<primaryHeadsPage> {
       crossAxisCount: 1,
       childAspectRatio: 12 / 3.5,
       children: <Widget>[
+        /*
+        Control Room
+        Registrations Incharge
+        Technical Events Incharge
+        Cultural Events Incharge
+        Hospitality and Transport
+        College Coordiantor
+        Crowd Control Incharge
+
+        */
         ///////////////////////////////////////////////////////////////////////
         Card(
           shape: RoundedRectangleBorder(

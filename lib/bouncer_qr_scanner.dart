@@ -327,7 +327,8 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
       future: userKundali.doc(global.scanID).collection('events').doc(global.whichEventYa).get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (snapshot.hasError) {                                                 //Error
+        //////////////////////////////////////////////////////////////////////// Something went wrong
+        if (snapshot.hasError) {
           return Dialog(
             backgroundColor: Colors.transparent,
             child:
@@ -379,12 +380,13 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
             ]),
           );
         }
-
         //////////////////////////////////////////////////////////////////////// User not registered
         if (snapshot.hasData && !snapshot.data!.exists) {
           return Dialog(
             backgroundColor: Colors.transparent,
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
               Card(
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
@@ -505,8 +507,8 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
             );
           }
           ////////////////////////////////////////////////////////////////////// Attendance Successful
-          else if(!data['Attended']){
-            userKundali.doc(global.scanID).collection('events').doc(global.whichEventYa).update({'Attended': true});
+          else if(!data['report']){
+            userKundali.doc(global.scanID).collection('events').doc(global.whichEventYa).update({'report': true});
             return Dialog(
               backgroundColor: Colors.transparent,
               child: Column(mainAxisSize: MainAxisSize.min, children: [
