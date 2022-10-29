@@ -1,33 +1,120 @@
 {
   "project_info": {
-    "project_number": "736322578943",
-    "project_id": "orgaerodev",
-    "storage_bucket": "orgaerodev.appspot.com"
+    "project_number": "64954801094",
+    "project_id": "aerophilia-3f429",
+    "storage_bucket": "aerophilia-3f429.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:736322578943:android:872b52e6ce60acca8f5fca",
+        "mobilesdk_app_id": "1:64954801094:android:5c7361fcf085d91b52f0c7",
         "android_client_info": {
-          "package_name": "com.example.org_aero22"
+          "package_name": "com.challengers.org_aero22"
         }
       },
       "oauth_client": [
         {
-          "client_id": "736322578943-jlfbj89jg1vbqeen4ttuu8sdql02b1mq.apps.googleusercontent.com",
+          "client_id": "64954801094-h6c9b1fgtsk0f90omctfbru1l87dcj4u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBxVFubROkD3jKYacR_2w6slXeKUAnuLxk"
+          "current_key": "AIzaSyDsQJ81LIBMYBAQ9bV-418UyOrMlXI7jAo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "736322578943-jlfbj89jg1vbqeen4ttuu8sdql02b1mq.apps.googleusercontent.com",
+              "client_id": "64954801094-h6c9b1fgtsk0f90omctfbru1l87dcj4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64954801094:android:5130c61153ac2d8452f0c7",
+        "android_client_info": {
+          "package_name": "com.example.aerophilia_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64954801094-h6c9b1fgtsk0f90omctfbru1l87dcj4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsQJ81LIBMYBAQ9bV-418UyOrMlXI7jAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64954801094-h6c9b1fgtsk0f90omctfbru1l87dcj4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64954801094:android:4157d15fcf53bd4a52f0c7",
+        "android_client_info": {
+          "package_name": "com.org.challengers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64954801094-h6c9b1fgtsk0f90omctfbru1l87dcj4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsQJ81LIBMYBAQ9bV-418UyOrMlXI7jAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64954801094-h6c9b1fgtsk0f90omctfbru1l87dcj4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64954801094:android:382fb64bdeb9b7ee52f0c7",
+        "android_client_info": {
+          "package_name": "in.org.challengers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64954801094-h6c9b1fgtsk0f90omctfbru1l87dcj4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsQJ81LIBMYBAQ9bV-418UyOrMlXI7jAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64954801094-h6c9b1fgtsk0f90omctfbru1l87dcj4u.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -61,7 +61,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-    namespace 'com.example.org_aero22'
+    namespace 'com.challengers.org_aero22'
 }
 
 flutter {
