@@ -387,61 +387,87 @@ class _dayOnePageState extends State<dayOnePage> {
               ),
             ),
             /////////////////////////////////////////////////////////////////////// Valo
-            Card(
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  color: global.eventsBorder,
+            Container(
+              height:200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(global.cardRadius)),
+                border: Border.all(
+                  color: global.orange,
                   width: 2,
                 ),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: global.cardBackground,
-                  border: Border.all(
-                    color: global.orange,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
+                image: const DecorationImage(
+                  image: NetworkImage('https://aerophilia.in/events/technical/CODM1.webp'),
+                  fit: BoxFit.cover,
                 ),
-                padding: const EdgeInsets.all(16),
-                child: ListTile(
-                  leading: Image.asset(
-                    'assets/images/Aerophilia-logo mark-White.png',
-                    height: 45,
+              ),
+              child: Card(
+                color: Colors.transparent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(global.cardRadius),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: global.cardBackground,
+                    borderRadius: BorderRadius.circular(global.cardRadius),
                   ),
-                  title: Text(
-                    'Mayhem! - Valo',                                                    //Event name
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: global.orange,
-                    ),
-                  ),
-                  subtitle: const Padding(
-                    padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
-                    child: Text(
-                      'Valorant',                                            //Event type
+                  padding: const EdgeInsets.all(16),
+                  child: ListTile(
+                    title: Text(
+                      'Mayhem! - Valo',                                                    //Event name
                       style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.white38
+                        fontSize: 18,
+                        color: global.orange,
                       ),
                     ),
-                  ),
-                  trailing: InkWell(
-                    splashColor: global.orange,
-                    highlightColor: Colors.white,
-                    child: Icon(
-                      Icons.qr_code_scanner_rounded,
-                      size: 28,
-                      color: global.orange,
+                    subtitle: const Padding(
+                      padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                      child: Text(
+                        'Valorant',                                            //Event type
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.white38
+                        ),
+                      ),
                     ),
-                    onTap: () {
-                      global.whichEventYa= "MAYHEM!-Valo";                            //Collection key
-                      Navigator.pushNamed(
-                          context,
-                          '/home/Events/BouncerQRScanner'
-                      );
-                    },
+                    trailing: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        InkWell(
+                          splashColor: global.orange,
+                          highlightColor: Colors.white,
+                          child: Icon(
+                            Icons.groups_rounded,
+                            size: 28,
+                            color: global.orange,
+                          ),
+                          onTap: () {
+                            global.whichEventYa= "MAYHEM!-Valo";                            //Collection key
+                            Navigator.pushNamed(
+                                context,
+                                '/home/Events/BouncerQRScanner'
+                            );
+                          },
+                        ),
+                        const SizedBox(width: 15,),
+                        InkWell(
+                          splashColor: global.orange,
+                          highlightColor: Colors.white,
+                          child: Icon(
+                            Icons.qr_code_scanner_rounded,
+                            size: 28,
+                            color: global.orange,
+                          ),
+                          onTap: () {
+                            global.whichEventYa= "MAYHEM!-Valo";                            //Collection key
+                            Navigator.pushNamed(
+                                context,
+                                '/home/Events/BouncerQRScanner'
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
