@@ -10,17 +10,10 @@ var contactBorder= Colors.white60; //29282A
 var black= Colors.black;
 var eventsBorder= const Color(0xFFFF9603);
 late String scanID;
-
-CollectionReference events =
-FirebaseFirestore
-    .instance
-    .collection('Unauthorised Access')
-    .doc("Unauthorised Access")
-    .collection('Unauthorised Access');
+late String whichEventYa;
 
 CollectionReference userKundali =
 FirebaseFirestore
     .instance
     .collection('Unauthorised Access');
 
-late String whichEventYa;

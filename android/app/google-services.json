@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:64954801094:android:5c7361fcf085d91b52f0c7",
+        "mobilesdk_app_id": "1:64954801094:android:5130c61153ac2d8452f0c7",
         "android_client_info": {
-          "package_name": "com.challengers.org_aero22"
+          "package_name": "com.example.aerophilia_app"
         }
       },
       "oauth_client": [
@@ -36,9 +36,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:64954801094:android:5130c61153ac2d8452f0c7",
+        "mobilesdk_app_id": "1:64954801094:android:3db39ae4daab2dbe52f0c7",
         "android_client_info": {
-          "package_name": "com.example.aerophilia_app"
+          "package_name": "com.example.org_aero22"
         }
       },
       "oauth_client": [

@@ -35,6 +35,7 @@ Future<void> main() async {
       },
     ),
   );
+
 }
 
 class MyHomePage extends StatefulWidget {
@@ -260,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
         global.userKundali =
         FirebaseFirestore
             .instance
-            .collection('participants');
+            .collection('Participant');
 
       }
     });
@@ -274,7 +275,7 @@ class _MyHomePageState extends State<MyHomePage> {
         super.setState(() {});
       });
       _setPassKEYSharedPref();
-    } /*else {
+      } /*else {
       setState((){
         global.signature = 'UNAUTHORISED!';
       });

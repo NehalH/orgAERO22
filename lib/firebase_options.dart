@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBxVFubROkD3jKYacR_2w6slXeKUAnuLxk',
-    appId: '1:736322578943:android:872b52e6ce60acca8f5fca',
-    messagingSenderId: '736322578943',
-    projectId: 'orgaerodev',
-    storageBucket: 'orgaerodev.appspot.com',
+    apiKey: 'AIzaSyDsQJ81LIBMYBAQ9bV-418UyOrMlXI7jAo',
+    appId: '1:64954801094:android:3db39ae4daab2dbe52f0c7',
+    messagingSenderId: '64954801094',
+    projectId: 'aerophilia-3f429',
+    storageBucket: 'aerophilia-3f429.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDzweQsyFTo4VvQRX-tmehalg_YYMmQNyQ',
-    appId: '1:736322578943:ios:a254be61bf74577a8f5fca',
-    messagingSenderId: '736322578943',
-    projectId: 'orgaerodev',
-    storageBucket: 'orgaerodev.appspot.com',
-    iosClientId: '736322578943-7kg8o9ncca3cj67h93lovbdduu9r65ve.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCWdWQqlvL66Mo9RU4oZTfVH4pH8H720Nw',
+    appId: '1:64954801094:ios:60b57bc5987b098552f0c7',
+    messagingSenderId: '64954801094',
+    projectId: 'aerophilia-3f429',
+    storageBucket: 'aerophilia-3f429.appspot.com',
+    iosClientId: '64954801094-5r43tc50e8cm80f7r7f0i4ru8dkb708f.apps.googleusercontent.com',
     iosBundleId: 'com.example.orgAero22',
   );
 }

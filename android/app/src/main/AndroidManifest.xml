@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.challengers.org_aero22">
    <application
-        android:label="org_aero22"
+        android:label="ORGANIZER"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as global;
 
-CollectionReference events= global.events;
 CollectionReference userKundali = global.userKundali;
 
 class BouncerScanQrPage extends StatefulWidget {
@@ -124,7 +124,8 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     TextField(
-
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       onChanged: (value) => global.scanID = value,
                       textAlign: TextAlign.center,
                       decoration: const InputDecoration(
@@ -138,7 +139,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                             color: Colors.white,
                           ),
                         ),
-                        hintText: 'eg: 1234',
+                        hintText: 'eg: 2186',
                         hintStyle: TextStyle(
                           color: Colors.black38,
                           fontSize: null,
@@ -286,7 +287,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                                   .doc(global.scanID)
                                   .collection('events')
                                   .doc(global.whichEventYa)
-                                  .update({'paid':true});
+                                  .update({'payment':true});
 
                               Navigator.pop(context);
                             },
@@ -419,7 +420,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                     const SizedBox(
                       height: 30,
                     ),
-                    Container(
+                    SizedBox(
                       width: 200,
                       child: ElevatedButton(
                           onPressed: () {
@@ -443,7 +444,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
           Map<String, dynamic> data =
           snapshot.data!.data() as Map<String, dynamic>;
           ////////////////////////////////////////////////////////////////////// Payment incomplete
-          if(!data['paid']){
+          if(!data['payment']){
             return Dialog(
               backgroundColor: Colors.transparent,
               child: Column(mainAxisSize: MainAxisSize.min, children: [

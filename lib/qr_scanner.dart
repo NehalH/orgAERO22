@@ -217,6 +217,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
         await controller.pauseCamera();
         result = scanData;
         global.scanID = result!.code as String;
+        print(global.scanID);
         regStatus(context); //Do Query
       });
     });
