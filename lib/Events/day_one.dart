@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:org_aero22/globals.dart' as global;
 
 import '../qr_scanner.dart';
@@ -17,7 +18,102 @@ class _dayOnePageState extends State<dayOnePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
-        body: GridView.count(
+        body: Scrollable(
+          viewportBuilder:
+              (BuildContext context, ViewportOffset position) {
+            return ListView.builder(
+                itemCount: 5,//dates[current].length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    height:200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(global.cardRadius)),
+                      border: Border.all(
+                        color: global.orange,
+                        width: 2,
+                      ),
+                      image: const DecorationImage(
+                        image: NetworkImage('https://aerophilia.in/events/technical/CODM1.webp'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Card(
+                      color: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(global.cardRadius),
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: global.cardBackground,
+                          borderRadius: BorderRadius.circular(global.cardRadius),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: ListTile(
+                          title: Text(
+                            'Mayhem! - Valo',                                                    //Event name
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: global.orange,
+                            ),
+                          ),
+                          subtitle: const Padding(
+                            padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                            child: Text(
+                              'Valorant',                                            //Event type
+                              style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.white38
+                              ),
+                            ),
+                          ),
+                          trailing: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              InkWell(
+                                splashColor: global.orange,
+                                highlightColor: Colors.white,
+                                child: Icon(
+                                  Icons.groups_rounded,
+                                  size: 28,
+                                  color: global.orange,
+                                ),
+                                onTap: () {
+                                  global.whichEventYa= "MAYHEM!-Valo";                            //Collection key
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/home/Events/BouncerQRScanner'
+                                  );
+                                },
+                              ),
+                              const SizedBox(width: 15,),
+                              InkWell(
+                                splashColor: global.orange,
+                                highlightColor: Colors.white,
+                                child: Icon(
+                                  Icons.qr_code_scanner_rounded,
+                                  size: 28,
+                                  color: global.orange,
+                                ),
+                                onTap: () {
+                                  global.whichEventYa= "MAYHEM!-Valo";                            //Collection key
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/home/Events/BouncerQRScanner'
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+            );
+          },
+        ),
+      /*GridView.count(
           primary: false,
           padding: const EdgeInsets.all(20),
           crossAxisSpacing: 20,
@@ -538,6 +634,7 @@ class _dayOnePageState extends State<dayOnePage> {
             ),                                                 // BlankBox
 
           ],
-        ));
+        )*/
+    );
   }
 }
