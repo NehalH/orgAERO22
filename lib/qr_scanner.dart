@@ -122,7 +122,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       TextField(
-
+                        keyboardType: TextInputType.number,
                         onChanged: (value) => global.scanID = value,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
@@ -136,7 +136,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
                               color: Colors.white,
                             ),
                           ),
-                          hintText: 'eg: 1234',
+                          hintText: 'eg: 2186',
                           hintStyle: TextStyle(
                             color: Colors.black38,
                             fontSize: null,
@@ -290,40 +290,109 @@ class _ScanQrPageState extends State<ScanQrPage> {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Column(
-            children: [
-              const SizedBox(height: 20,),
-              const Icon(Icons.warning_rounded, color: Colors.yellow, size: 180,),
-              Text(
-                'Something went wrong. Try again.',
-                style: TextStyle(
-                  fontSize: 28,
-                  color: global.black,
-                  fontFamily: 'Urbanist',
-                  fontWeight: FontWeight.w700,
-                ),
-                textAlign: TextAlign.center,
-              )
-            ],
+          return Dialog(
+            backgroundColor: Colors.transparent,
+            child:
+            Column(mainAxisSize: MainAxisSize.min, children: [
+              Column(
+                children: [
+                  SizedBox(
+                    width: 350,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 20,),
+                        const Icon(Icons.warning_rounded, color: Colors.yellow, size: 180,),
+                        Text(
+                          'Something went wrong. Try again.',
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: global.black,
+                            fontFamily: 'Urbanist',
+                            fontWeight: FontWeight.w700,
+                          ),
+                          textAlign: TextAlign.center,
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          controller?.resumeCamera();
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Close"))
+                    ,
+                  ),
+
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ],
+              ),
+            ]),
           );
         }
 
         if (snapshot.hasData && !snapshot.data!.exists) {
-          return Column(
-            children: [
-              const SizedBox(height: 20,),
-              const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
-              Text(
-                'User not found!',
-                style: TextStyle(
-                  fontSize: 28,
-                  color: global.black,
-                  fontFamily: 'Urbanist',
-                  fontWeight: FontWeight.w700,
-                ),
-                textAlign: TextAlign.center,
-              )
-            ],
+          return Dialog(
+            backgroundColor: Colors.transparent,
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: global.orange,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: 350,
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 20,),
+                              const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
+                              Text(
+                                'User not found on\nDataBase',
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  color: global.black,
+                                  fontFamily: 'Urbanist',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                textAlign: TextAlign.center,
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                controller?.resumeCamera();
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Close")
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                      ],
+                    ),
+                  ),
+                ]),
           );
         }
 
@@ -345,19 +414,137 @@ class _ScanQrPageState extends State<ScanQrPage> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                subtitle: Padding(
-                  padding: const EdgeInsets.fromLTRB(2.0, 8.0, 0, 0),
-                  child: Text(
-                    'Name: ${data['Name']}\n'
-                        'Contact: ${data['Contact']}',
-                    style: const TextStyle(fontSize: 18.0, color: Colors.black),
-                    textAlign: TextAlign.center,
-                  ),
+                subtitle: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 20,),
+                    
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: const [
+                                  Text(
+                                    'Name :',
+                                    style: TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.w800),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(' ${data['Name']}',
+                                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
+                                    textAlign: TextAlign.right,)
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: const [
+                                  Text(
+                                    'PID :',
+                                    style: TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.w800),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(' ${global.scanID}',
+                                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
+                                    textAlign: TextAlign.right,)
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: const [
+                                  Text(
+                                    'Contact :',
+                                    style: TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.w800),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(' ${data['Contact']}',
+                                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
+                                    textAlign: TextAlign.right,)
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: const [
+                                  Text(
+                                    'Email :',
+                                    style: TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.w800),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(' ${data['Email']}',
+                                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
+                                    textAlign: TextAlign.right,)
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: const [
+                                  Text(
+                                    'College :',
+                                    style: TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.w800),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(' ${data['College']}',
+                                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
+                                    textAlign: TextAlign.right,)
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+
+                  ],
                 ),
               )
             ],
           );
         }
+
         return Column(
           children: const [
             SizedBox(height: 20,),

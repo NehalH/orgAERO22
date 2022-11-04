@@ -47,6 +47,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  String sigSafe= " ";
+
   @override
   void initState() {
     _getVarSharedPref();
@@ -154,7 +156,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                         child: TextField(
                           //controller: _textInputController,
-                          onChanged: (value) => global.passkey = value,
+                          //onChanged: (value) => global.passkey = value,
+                          onChanged: (value) {
+                            global.passkey = value;
+                            sigSafe = value;
+                          },
                           style: const TextStyle(color: Colors.transparent),
                           textAlign: TextAlign.center,
                           decoration: const InputDecoration(
@@ -189,7 +195,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
                         child: TextField(
-                          onChanged: (value) => global.signature = value,
+                          //onChanged: (value) => global.signature = value,
+                          onChanged: (value) {
+                            if(sigSafe=='nehal') {                               ///---///---///---///---///---///Here
+                              global.signature = value;
+                            }
+                          },
                           textAlign: TextAlign.center,
                           decoration: const InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -225,7 +236,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                         child: MaterialButton(
                           onPressed: () {
-                            checkPassKey();
+                            super.setState(() {
+                              checkPassKey();
+                            });
+                            Navigator.pop(context);
                           },
                           color: Colors.redAccent.shade400,
                           child: const Text(
@@ -246,7 +260,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _setPassKEYSharedPref() async {
     final prefs = await SharedPreferences.getInstance();
     // It doesn't make much sense imho, better use a boolean
-    await prefs.setString('passKEY', 'nehal');                                   //Here
+    await prefs.setString('passKEY', 'nehal');                                   ///---///---///---///---///---///Here
     await prefs.setString('signature', global.signature);
   }
 
@@ -269,7 +283,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void checkPassKey() {
     final String enteredPassKey = global.passkey;
-    if (enteredPassKey == 'nehal') {                                             //And Here
+    if (enteredPassKey == 'nehal') {                                             ///---///---///---///---///---///Here
       setState(() {
         authenticated = true;
         super.setState(() {});

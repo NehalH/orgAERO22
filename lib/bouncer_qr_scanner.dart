@@ -223,6 +223,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
         regStatus(context); //Do Query
       });
     });
+
   }
 
   void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
@@ -274,10 +275,22 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                       children:  [
                         const SizedBox(height: 20,),
                         Icon(Icons.warning_rounded, color: global.orange, size: 180,),
-                        const Text("You are about to make a registration for this event.\n"
-                            "Make sure to collect the full registration amount fron the participant\n"
-                            "The same will be retrieved from you later\n"
-                            "Do you wish to proceed?"),
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text(
+                            "You are about to make a registration for this event.\n"
+                                "Make sure to collect the full registration amount from the participant.\n"
+                                "The same will be retrieved from you later.\n"
+                                "Do you wish to proceed?",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: global.black,
+                              fontFamily: 'Urbanist',
+                              fontWeight: FontWeight.w300,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                         const SizedBox(height: 20,),
                         SizedBox(
                           width: 200,
@@ -289,7 +302,19 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                                   .doc(global.whichEventYa)
                                   .update({'payment':true});
 
-                              Navigator.pop(context);
+                              userKundali
+                                  .doc(global.scanID)
+                                  .collection('events')
+                                  .doc(global.whichEventYa)
+                                  .update({'signature':global.signature});
+
+                              userKundali
+                                  .doc(global.scanID)
+                                  .collection('events')
+                                  .doc(global.whichEventYa)
+                                  .update({'report':true});
+
+                              showAtt(context);
                             },
                             color: Colors.green,
                             child: const Text(
@@ -312,6 +337,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                             ),
                           ),
                         ),
+                        const SizedBox(height: 20,),
                       ],
                     ),
                   ),
@@ -320,6 +346,64 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
         );
       }
     );
+  }                                    // You Sure?
+
+  Future showAtt(BuildContext context){
+    return showDialog(context: context, builder: (BuildContext context){
+      return Dialog(
+        backgroundColor: Colors.transparent,
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          Card(
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                color: global.orange,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(4.0),
+            ),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 350,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20,),
+                      const Icon(Icons.verified_user, color: Colors.green, size: 180),
+                      Text(
+                        'Verified\nand marked as Attended!',
+                        style: TextStyle(
+                          fontSize: 26,
+                          color: global.black,
+                          fontFamily: 'Urbanist',
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  width: 80,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        controller?.resumeCamera();
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Close")
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+              ],
+            ),
+          ),
+        ]),
+      );
+    });
   }
 
   Widget doQuery(BuildContext context) {                                        //doQuery
@@ -366,12 +450,17 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                     const SizedBox(
                       height: 30,
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          controller?.resumeCamera();
-                          Navigator.pop(context);
-                        },
-                        child: const Text("Close")),
+                    SizedBox(
+                      width: 200,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            controller?.resumeCamera();
+                            Navigator.pop(context);
+                          },
+                          child: const Text("Close"))
+                      ,
+                    ),
+
                     const SizedBox(
                       height: 30,
                     ),
@@ -461,10 +550,19 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                       SizedBox(
                         width: 350,
                         child: Column(
-                          children: const [
-                            SizedBox(height: 20,),
-                            Icon(Icons.warning_rounded, color: Colors.yellow, size: 180,),
-                            Text('Payment not done!'),
+                          children: [
+                            const SizedBox(height: 20,),
+                            const Icon(Icons.warning_rounded, color: Colors.yellow, size: 180,),
+                            Text(
+                              'Payment not done!',
+                              style: TextStyle(
+                                fontSize: 28,
+                                color: global.black,
+                                fontFamily: 'Urbanist',
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ],
                         ),
                       ),
@@ -480,7 +578,9 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                               await youSure(context);
                               Navigator.pop(context);
                             },
-                            child: const Text("Offline Payment")
+                            child: const Text("Offline Payment",
+                              style: TextStyle(color: Colors.white),
+                            ),
                         ),
                       ),
                       const SizedBox(
@@ -495,7 +595,9 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                               controller?.resumeCamera();
                               Navigator.pop(context);
                             },
-                            child: const Text("Close")
+                            child: const Text("Close",
+                              style: TextStyle(color: Colors.white),
+                            ),
                         ),
                       ),
                       const SizedBox(
@@ -526,10 +628,19 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                       SizedBox(
                         width: 350,
                         child: Column(
-                          children: const [
-                            SizedBox(height: 20,),
-                            Icon(Icons.verified_user, color: Colors.green, size: 180),
-                            Text('Verified and marked as attended.'),
+                          children:  [
+                            const SizedBox(height: 20,),
+                            const Icon(Icons.verified_user, color: Colors.green, size: 180),
+                            Text(
+                              'Verified\nand marked as Attended!',
+                              style: TextStyle(
+                                fontSize: 28,
+                                color: global.black,
+                                fontFamily: 'Urbanist',
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ],
                         ),
                       ),
@@ -573,10 +684,19 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                       SizedBox(
                         width: 350,
                         child: Column(
-                          children: const [
-                            SizedBox(height: 20,),
-                            Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
-                            Text('Already attended!'),
+                          children:  [
+                            const SizedBox(height: 20,),
+                            const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
+                            Text(
+                              'Already Attended!',
+                              style: TextStyle(
+                                fontSize: 28,
+                                color: global.black,
+                                fontFamily: 'Urbanist',
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ],
                         ),
                       ),
