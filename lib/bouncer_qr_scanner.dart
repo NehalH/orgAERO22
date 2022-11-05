@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 import 'globals.dart' as global;
 
 CollectionReference userKundali = global.userKundali;
@@ -154,6 +156,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                       child: MaterialButton(
 
                         onPressed: () {
+                          controller?.pauseCamera();
                           regStatus(context);
                         },
                         color: global.orange,
@@ -243,7 +246,23 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
 
   //////////////////////////////////////////////////////////////////////////////  RegStatus Dialogue
 
+  void _submitForm() async {
+    const String scriptURL = 'https://script.google.com/macros/s/AKfycbwxNSniopqwp2dIgsJRwrQcqSLLF0fZQuhv2fKJz_gLyytzwIE4Zy4Joop7fIuN6tKX/exec';
+
+    String queryString = "?signature=${global.signature}&id=${global.scanID}&event=${global.whichEventYa}&amount=${global.whichEventYa}";
+
+    var finalURI = Uri.parse(scriptURL + queryString);
+    var response = await http.get(finalURI);
+    //print(finalURI);
+
+    if (response.statusCode == 200) {
+      var bodyR = convert.jsonDecode(response.body);
+      print(bodyR);
+    }
+  }
+
   Future regStatus(BuildContext context) {
+    controller!.pauseCamera();
     return showDialog(
       //barrierColor: Colors.transparent,
       context: context,
@@ -296,6 +315,9 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                           width: 200,
                           child: MaterialButton(
                             onPressed: (){
+
+                              _submitForm();
+
                               userKundali
                                   .doc(global.scanID)
                                   .collection('events')
