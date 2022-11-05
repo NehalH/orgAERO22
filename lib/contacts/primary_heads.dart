@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:org_aero22/globals.dart' as global;
 
@@ -16,314 +18,74 @@ class _primaryHeadsPageState extends State<primaryHeadsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-        body: GridView.count(
-      primary: false,
-      padding: const EdgeInsets.all(20),
-      crossAxisSpacing: 20,
-      mainAxisSpacing: 20,
-      crossAxisCount: 1,
-      childAspectRatio: 12 / 3.5,
-      children: <Widget>[
-        /*
-        Control Room
-        Registrations Incharge
-        Technical Events Incharge
-        Cultural Events Incharge
-        Hospitality and Transport
-        College Coordiantor
-        Crowd Control Incharge
-
-        */
-        ///////////////////////////////////////////////////////////////////////
-        Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: global.orange,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(14.0),
-          ),
-          child: Container(
-            color: global.black,
-            padding: const EdgeInsets.all(16),
-            child: ListTile(
-              //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
-              title: Text(
-                'Control Room',
-                style: TextStyle(fontSize: 18, color: global.orange,),
-              ),
-              subtitle: const Padding(
-                padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
-                child: Text(
-                  'Nehal Hosalikar',
-                  style: TextStyle(fontSize: 16.0, color: Colors.white38),
-                ),
-              ),
-              trailing: InkWell(
-                splashColor: global.orange,
-                highlightColor: Colors.white,
-                child: const Icon(Icons.phone, size: 28, color: Colors.white,),
-                onTap: () {
-                  launch("tel://8217785009");
-                },
-              ),
-            ),
-          ),
-        ),
-        ///////////////////////////////////////////////////////////////////////
-        Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: global.orange,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(14.0),
-          ),
-          child: Container(
-            color: global.black,
-            padding: const EdgeInsets.all(16),
-            child: ListTile(
-              //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
-              title: Text(
-                'Event Manager',
-                style: TextStyle(fontSize: 18, color: global.orange,),
-              ),
-              subtitle: const Padding(
-                padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
-                child: Text(
-                  'Nehal Hosalikar',
-                  style: TextStyle(fontSize: 16.0, color: Colors.white38),
-                ),
-              ),
-              trailing: InkWell(
-                splashColor: global.orange,
-                highlightColor: Colors.white,
-                child: const Icon(Icons.phone, size: 28, color: Colors.white,),
-                onTap: () {
-                  launch("tel://8217785009");
-                },
-              ),
-            ),
-          ),
-        ),
-        ///////////////////////////////////////////////////////////////////////
-        Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: global.orange,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(14.0),
-          ),
-          child: Container(
-            color: global.black,
-            padding: const EdgeInsets.all(16),
-            child: ListTile(
-              //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
-              title: Text(
-                'Registrations Head',
-                style: TextStyle(fontSize: 18, color: global.orange,),
-              ),
-              subtitle: const Padding(
-                padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
-                child: Text(
-                  'Nehal Hosalikar',
-                  style: TextStyle(fontSize: 16.0, color: Colors.white38),
-                ),
-              ),
-              trailing: InkWell(
-                splashColor: global.orange,
-                highlightColor: Colors.white,
-                child: const Icon(Icons.phone, size: 28, color: Colors.white,),
-                onTap: () {
-                  launch("tel://8217785009");
-                },
-              ),
-            ),
-          ),
-        ),
-        ///////////////////////////////////////////////////////////////////////
-        Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: global.orange,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(14.0),
-          ),
-          child: Container(
-            color: global.black,
-            padding: const EdgeInsets.all(16),
-            child: ListTile(
-              //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
-              title: Text(
-                'Technical Head',
-                style: TextStyle(fontSize: 18, color: global.orange,),
-              ),
-              subtitle: const Padding(
-                padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
-                child: Text(
-                  'Nehal Hosalikar',
-                  style: TextStyle(fontSize: 16.0, color: Colors.white38),
-                ),
-              ),
-              trailing: InkWell(
-                splashColor: global.orange,
-                highlightColor: Colors.white,
-                child: const Icon(Icons.phone, size: 28, color: Colors.white,),
-                onTap: () {
-                  launch("tel://8217785009");
-                },
-              ),
-            ),
-          ),
-        ),
-        ///////////////////////////////////////////////////////////////////////
-        Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: global.orange,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(14.0),
-          ),
-          child: Container(
-            color: global.black,
-            padding: const EdgeInsets.all(16),
-            child: ListTile(
-              //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
-              title: Text(
-                'Cultural Head',
-                style: TextStyle(fontSize: 18, color: global.orange,),
-              ),
-              subtitle: const Padding(
-                padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
-                child: Text(
-                  'Nehal Hosalikar',
-                  style: TextStyle(fontSize: 16.0, color: Colors.white38),
-                ),
-              ),
-              trailing: InkWell(
-                splashColor: global.orange,
-                highlightColor: Colors.white,
-                child: const Icon(Icons.phone, size: 28, color: Colors.white,),
-                onTap: () {
-                  launch("tel://8217785009");
-                },
-              ),
-            ),
-          ),
-        ),
-        ///////////////////////////////////////////////////////////////////////
-        Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: global.orange,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(14.0),
-          ),
-          child: Container(
-            color: global.black,
-            padding: const EdgeInsets.all(16),
-            child: ListTile(
-              //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
-              title: Text(
-                'Hospitality In-charge',
-                style: TextStyle(fontSize: 18, color: global.orange,),
-              ),
-              subtitle: const Padding(
-                padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
-                child: Text(
-                  'Nehal Hosalikar',
-                  style: TextStyle(fontSize: 16.0, color: Colors.white38),
-                ),
-              ),
-              trailing: InkWell(
-                splashColor: global.orange,
-                highlightColor: Colors.white,
-                child: const Icon(Icons.phone, size: 28, color: Colors.white,),
-                onTap: () {
-                  launch("tel://8217785009");
-                },
-              ),
-            ),
-          ),
-        ),
-        ///////////////////////////////////////////////////////////////////////
-        Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: global.orange,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(14.0),
-          ),
-          child: Container(
-            color: global.black,
-            padding: const EdgeInsets.all(16),
-            child: ListTile(
-              //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
-              title: Text(
-                'College Coordinator',
-                style: TextStyle(fontSize: 18, color: global.orange,),
-              ),
-              subtitle: const Padding(
-                padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
-                child: Text(
-                  'Nehal Hosalikar',
-                  style: TextStyle(fontSize: 16.0, color: Colors.white38),
-                ),
-              ),
-              trailing: InkWell(
-                splashColor: global.orange,
-                highlightColor: Colors.white,
-                child: const Icon(Icons.phone, size: 28, color: Colors.white,),
-                onTap: () {
-                  launch("tel://8217785009");
-                },
-              ),
-            ),
-          ),
-        ),
-        ///////////////////////////////////////////////////////////////////////
-        Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: global.orange,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(14.0),
-          ),
-          child: Container(
-            color: global.black,
-            padding: const EdgeInsets.all(16),
-            child: ListTile(
-              //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
-              title: Text(
-                'Crowd Control In-charge',
-                style: TextStyle(fontSize: 18, color: global.orange,),
-              ),
-              subtitle: const Padding(
-                padding: EdgeInsets.fromLTRB(2.0,8.0,0,0),
-                child: Text(
-                  'Nehal Hosalikar',
-                  style: TextStyle(fontSize: 16.0, color: Colors.white38),
-                ),
-              ),
-              trailing: InkWell(
-                splashColor: global.orange,
-                highlightColor: Colors.white,
-                child: const Icon(Icons.phone, size: 28, color: Colors.white,),
-                onTap: () {
-                  launch("tel://8217785009");
-                },
-              ),
-            ),
-          ),
-        ),
-        ///////////////////////////////////////////////////////////////////////
-      ],
-    ));
+      body: Scrollable(
+        viewportBuilder:
+            (BuildContext context, ViewportOffset position) {
+          return ListView.builder(
+            padding: const EdgeInsets.fromLTRB(20,30,20,30),
+            itemCount: 8,
+            itemBuilder: (BuildContext context, int index) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: global.contactBorder,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(14.0),
+                    ),
+                    child: Container(
+                      color: global.black,
+                      padding: const EdgeInsets.all(16),
+                      child: ListTile(
+                        //leading: const Icon(Icons.account_box, size: 40, color: Colors.white,),
+                        title: Text(
+                          global.primResp[index],                                                    //Event name
+                          style: TextStyle(fontSize: 18, color: global.orange,),
+                        ),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.fromLTRB(2.0,8.0,0,0),
+                          child: Text(
+                            global.primHead[index],                                          //Contact name
+                            style: const TextStyle(fontSize: 16.0, color: Colors.white38),
+                          ),
+                        ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              splashColor: global.orange,
+                              highlightColor: Colors.white,
+                              child: const Icon(Icons.whatsapp_rounded, size: 28, color: Colors.green,),
+                              onTap: () {
+                                launch("whatsapp://send?phone=${global.primWA[index]}");
+                              },
+                            ),
+                            const SizedBox(width: 20,),
+                            InkWell(
+                              splashColor: global.orange,
+                              highlightColor: Colors.white,
+                              child: const Icon(Icons.phone, size: 28, color: Colors.white,),
+                              onTap: () {
+                                launch("tel://${global.primPh[index]}");                                 //Contact number
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
+                ],
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 }
