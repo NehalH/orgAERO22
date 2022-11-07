@@ -81,6 +81,7 @@ class _dayOnePageState extends State<dayOnePage> {
                                 ),
                                 onTap: () {
                                   global.whichEventYa= global.dayOneKeys[index];                            //Collection key
+                                  global.amount= global.dayOneAmount[index];
                                   Navigator.pushNamed(
                                       context,
                                       '/home/Events/BouncerQRScanner'

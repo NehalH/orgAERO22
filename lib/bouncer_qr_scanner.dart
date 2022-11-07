@@ -249,7 +249,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
   void _submitForm() async {
     const String scriptURL = 'https://script.google.com/macros/s/AKfycbwxNSniopqwp2dIgsJRwrQcqSLLF0fZQuhv2fKJz_gLyytzwIE4Zy4Joop7fIuN6tKX/exec';
 
-    String queryString = "?signature=${global.signature}&id=${global.scanID}&event=${global.whichEventYa}&amount=${global.whichEventYa}";
+    String queryString = "?signature=${global.signature}&id=${global.scanID}&event=${global.whichEventYa}&amount=${global.amount}";
 
     var finalURI = Uri.parse(scriptURL + queryString);
     var response = await http.get(finalURI);

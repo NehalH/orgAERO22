@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 late String passkey;
 String signature = ' ';
+late String amount;
 var cardRadius= 8.0;
 var orange= const Color(0xFFFF9603);
 var cardBackground= Colors.black87;
@@ -68,6 +69,18 @@ List dayOneKeys= [
   'MAYHEM! CODM'
 ];
 
+List dayOneAmount= [
+  '1000',
+  '400',
+  '400',
+  '400',
+  '300',
+  '150',
+  '300',
+  '600',
+  '400',
+];
+
 ////////////////////////////////////////////////////////////////////////////////
 
 List dayTwoPoster= [
@@ -106,6 +119,15 @@ List dayTwoKeys= [
   'SHERLOCKED',
 ];
 
+List dayTwoAmount= [
+  '2500',
+  '600',
+  '150',
+  '1000',
+  '1500',
+  '300'
+];
+
 ////////////////////////////////////////////////////////////////////////////////
 
 List dayThreePoster= [
@@ -134,6 +156,13 @@ List dayThreeKeys= [
   'TUG OF BOTS',
   'WATER ROCKET',
   'SING ON',
+];
+
+List dayThreeAmount= [
+  '2500',
+  '400',
+  '300',
+  '150',
 ];
 
 ////////////////////////////////////////////////////////////////////////////////

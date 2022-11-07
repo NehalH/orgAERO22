@@ -80,6 +80,7 @@ class _dayThreePageState extends State<dayThreePage> {
                             ),
                             onTap: () {
                               global.whichEventYa= global.dayThreeKeys[index];                            //Collection key
+                              global.amount= global.dayThreeAmount[index];
                               Navigator.pushNamed(
                                   context,
                                   '/home/Events/BouncerQRScanner'
