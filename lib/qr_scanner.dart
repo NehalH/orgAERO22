@@ -339,60 +339,31 @@ class _ScanQrPageState extends State<ScanQrPage> {
         }
 
         if (snapshot.hasData && !snapshot.data!.exists) {
-          return Dialog(
-            backgroundColor: Colors.transparent,
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: global.orange,
-                        width: 2,
+          return Column(
+            children: [
+              SizedBox(
+                width: 350,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 20,),
+                    const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
+                    Text(
+                      'User not found on\nDataBase',
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: global.black,
+                        fontFamily: 'Urbanist',
+                        fontWeight: FontWeight.w600,
                       ),
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          width: 350,
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 20,),
-                              const Icon(Icons.dangerous_rounded, color: Colors.red, size: 180,),
-                              Text(
-                                'User not found on\nDataBase',
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  color: global.black,
-                                  fontFamily: 'Urbanist',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                textAlign: TextAlign.center,
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        SizedBox(
-                          width: 200,
-                          child: ElevatedButton(
-                              onPressed: () {
-                                controller?.resumeCamera();
-                                Navigator.pop(context);
-                              },
-                              child: const Text("Close")
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                      ],
-                    ),
-                  ),
-                ]),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+            ],
           );
         }
 
