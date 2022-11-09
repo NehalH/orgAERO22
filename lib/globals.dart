@@ -31,6 +31,7 @@ List dayOnePoster= [
   'https://aerophilia.in/events/technical/EngineOverhaul.webp',
   'https://aerophilia.in/events/technical/Valorant1.webp',
   'https://aerophilia.in/events/technical/CODM1.webp',
+  'https://aerophilia.in/events/technical/ISRO.jpg',
 ];
 
 List dayOneEvents= [  // 9
@@ -42,7 +43,8 @@ List dayOneEvents= [  // 9
   'Feel the Beat',
   'Grease Monkey',
   'MAYHEM! VALORANT',
-  'MAYHEM! CODM'
+  'MAYHEM! CODM',
+  'ISRO Hackathon',
 ];
 
 List dayOneVenue= [
@@ -54,7 +56,8 @@ List dayOneVenue= [
   '.',
   'Mech Tech garage',
   'Online',
-  'Online '
+  'Online ',
+  'NAIN Center',
 ];
 
 List dayOneKeys= [
@@ -66,7 +69,8 @@ List dayOneKeys= [
   'FEEL THE BEAT',
   'GREASE MONKEY',
   'MAYHEM! Valorant',
-  'MAYHEM! CODM'
+  'MAYHEM! CODM',
+  'ISRO Hackathon',
 ];
 
 List dayOneAmount= [
@@ -79,6 +83,7 @@ List dayOneAmount= [
   '300',
   '600',
   '400',
+  '450',
 ];
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -169,6 +174,7 @@ List dayThreeAmount= [
 
 List primHead= [
   'Prajwal P',
+  'Mohizam',
   'Al Ashqan Babu',
   'Varun Raj Melanta',
   'Thejas rao',
@@ -180,6 +186,7 @@ List primHead= [
 
 List primResp= [
   'Control Room',
+  'Volunteer Incharge',
   'Registrations Incharge',
   'Hospitality In-Charge',
   'Crowd Control In-Charge',
@@ -191,6 +198,7 @@ List primResp= [
 
 List primPh= [
   '9480382738',
+  '6282024768',
   '8152009584',
   '9731527524',
   '9380174402',
@@ -202,6 +210,7 @@ List primPh= [
 
 List primWA= [
   '+919480382738',
+  '+916282024768',
   '+918152009584',
   '+919731527524',
   '+919380174402',

@@ -314,7 +314,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                         SizedBox(
                           width: 200,
                           child: MaterialButton(
-                            onPressed: (){
+                            onPressed: () async {
 
                               _submitForm();
 
@@ -412,6 +412,7 @@ class _BouncerScanQrPageState extends State<BouncerScanQrPage> {
                   child: ElevatedButton(
                       onPressed: () {
                         controller?.resumeCamera();
+                        Navigator.pop(context);
                         Navigator.pop(context);
                       },
                       child: const Text("Close")

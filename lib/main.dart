@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
   bool authenticated = false;
 
   List<Widget> pageList = [

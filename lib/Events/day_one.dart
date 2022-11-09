@@ -24,7 +24,7 @@ class _dayOnePageState extends State<dayOnePage> {
               (BuildContext context, ViewportOffset position) {
             return ListView.builder(
               padding: const EdgeInsets.fromLTRB(20,30,20,30),
-                itemCount: 9,
+                itemCount: 10,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,

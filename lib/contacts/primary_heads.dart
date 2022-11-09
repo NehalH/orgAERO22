@@ -23,7 +23,7 @@ class _primaryHeadsPageState extends State<primaryHeadsPage> {
             (BuildContext context, ViewportOffset position) {
           return ListView.builder(
             padding: const EdgeInsets.fromLTRB(20,30,20,30),
-            itemCount: 8,
+            itemCount: 9,
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
