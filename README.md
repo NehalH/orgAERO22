@@ -21,16 +21,18 @@ This app is supposed to help the organizers keep track, send updates, and verify
 ## Installation
 
 1. Clone the repository:
-  ```git clone github.com/NehalH/orgAERO22```
+  `git clone github.com/NehalH/orgAERO22`
 
 2. Navigate to the project directory:
-  ```cd project-directory```
+  `cd project-directory`
 
 3. Install the dependencies:
-  ```flutter pub get```
+  `flutter pub get`
 
 4. Run the application:
-  ```flutter run```
+  `flutter run`
+  
+NOTE: The API key for the database has been removed from the `google-services.json` file for security reasons. Please configure with your own database.
 
 
 ## Contributing
